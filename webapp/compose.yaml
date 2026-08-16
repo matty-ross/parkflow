@@ -1,0 +1,34 @@
+services:
+  app:
+    build: .
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      XDEBUG_MODE: off
+    depends_on:
+      postgres:
+        condition: service_healthy
+###> doctrine/doctrine-bundle ###
+  postgres:
+    image: postgres:18
+    user: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: parkflow
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  postgres_data:
+###< doctrine/doctrine-bundle ###
