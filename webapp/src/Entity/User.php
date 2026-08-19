@@ -5,11 +5,15 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table('users')]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     final public const ROLE_USER = 'ROLE_USER';
@@ -24,9 +28,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTime $createdAt = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
@@ -39,10 +46,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string[]
      */
     #[ORM\Column(type: Types::JSON)]
+    #[Assert\Choice(choices: [self::ROLE_USER, self::ROLE_ADMIN], multiple: true)]
     private array $roles = [];
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    private bool $isActive = false;
+    private bool $isActive = true;
 
     /**
      * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
@@ -55,6 +63,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $data;
     }
 
+    #[ORM\PrePersist]
+    public function setCreatedAt(): void
+    {
+        $this->createdAt = new \DateTime('now');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,14 +77,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
-    }
-
-    #[ORM\PrePersist]
-    public function setCreatedAt(): static
-    {
-        $this->createdAt = new \DateTime('now');
-
-        return $this;
     }
 
     public function getEmail(): ?string

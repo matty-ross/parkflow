@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParkFlow | Admin | Users{% endblock %}
+
+{% block body %}
+    <h1>Users</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Roles</th>
+                <th>IsActive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.createdAt|date('Y-m-d H:i:s T') }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_users_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_users_new') }}">new</a>
+{% endblock %}
