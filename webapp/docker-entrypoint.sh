@@ -8,6 +8,7 @@ else
     php bin/console asset-map:compile --no-interaction
 fi
 
+php bin/console importmap:install --no-interaction
 php bin/console doctrine:migrations:migrate --no-interaction
 
 exec docker-php-entrypoint "$@"
