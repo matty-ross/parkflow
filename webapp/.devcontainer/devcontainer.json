@@ -8,7 +8,6 @@
 	],
 	"service": "app",
 	"workspaceFolder": "/app",
-	"postCreateCommand": "composer install",
 	"customizations": {
 		"vscode": {
             "extensions": [

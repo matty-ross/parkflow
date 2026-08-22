@@ -10,6 +10,10 @@ RUN <<-EOF
 		xdebug
 EOF
 
+COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+
 COPY . .
 
-RUN composer install --no-dev
+ENTRYPOINT [ "docker-entrypoint" ]
+
+CMD [ "frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile" ]
