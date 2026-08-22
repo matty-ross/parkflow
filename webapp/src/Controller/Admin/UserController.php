@@ -23,17 +23,17 @@ final class UserController extends AbstractController
     }
     
     #[Route('', name: '_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return $this->render('admin/user/index.html.twig', [
+        return $this->render('admin/users/index.html.twig', [
             'users' => $this->userRepository->findAll(),
         ]);
     }
 
     #[Route('/{id<\d+>}', name: '_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(Request $request, User $user): Response
     {
-        return $this->render('admin/user/show.html.twig', [
+        return $this->render('admin/users/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -53,7 +53,7 @@ final class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/user/new.html.twig', [
+        return $this->render('admin/users/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -66,13 +66,15 @@ final class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            if ($user->getPassword()) {
+                $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            }
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/user/edit.html.twig', [
+        return $this->render('admin/users/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -81,7 +83,7 @@ final class UserController extends AbstractController
     #[Route('/{id<\d+>}/delete', name: '_delete', methods: ['POST'])]
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('app_admin_users_delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
             $this->entityManager->remove($user);
             $this->entityManager->flush();
         }
