@@ -1,11 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/users/index.html.twig' %}
 
-{% block title %}ParkFlow | Admin | New user{% endblock %}
-
-{% block body %}
+{% block main %}
     <h1>New user</h1>
 
     {{ include('admin/users/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_users_index') }}">back to list</a>
 {% endblock %}

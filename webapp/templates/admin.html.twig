@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() ~ ' | ' ~ 'Admin' }}{% endblock %}
+
+{% block body %}
+    {% include 'admin/_navbar.html.twig' %}
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+{% endblock %}

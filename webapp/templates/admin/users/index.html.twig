@@ -1,43 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}ParkFlow | Admin | Users{% endblock %}
+{% block title %}{{ parent() ~ ' | ' ~ 'Users' }}{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Users</h1>
 
-    <a href="{{ path('app_admin_users_new') }}" class="btn btn-outline-primary">new</a>
+    <a href="{{ path('app_admin_users_new') }}" class="btn btn-primary">new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>{{ 'label.created_at'|trans }}</th>
-                <th>{{ 'label.email'|trans }}</th>
-                <th>{{ 'label.first_name'|trans }}</th>
-                <th>{{ 'label.last_name'|trans }}</th>
-                <th>{{ 'label.roles'|trans }}</th>
-                <th>{{ 'label.is_active'|trans }}</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.createdAt|date('Y-m-d H:i:s T') }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_admin_users_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9" class="text-center">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'label.created_at'|trans }}</th>
+                    <th>{{ 'label.email'|trans }}</th>
+                    <th>{{ 'label.first_name'|trans }}</th>
+                    <th>{{ 'label.last_name'|trans }}</th>
+                    <th>{{ 'label.roles'|trans }}</th>
+                    <th>{{ 'label.is_active'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.createdAt|date('Y-m-d H:i:s T') }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_users_show', {'id': user.id}) }}" class="btn btn-sm btn-outline-primary">show</a>
+                        <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-sm btn-outline-primary">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
