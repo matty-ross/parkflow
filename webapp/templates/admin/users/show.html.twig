@@ -1,7 +1,7 @@
 {% extends 'admin/users/index.html.twig' %}
 
 {% block main %}
-    <h1>User</h1>
+    <h1>{{ 'title.user_show'|trans }}</h1>
 
     <div class="table-responsive">
         <table class="table">
@@ -34,7 +34,7 @@
         </table>
     </div>
 
-    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary">edit</a>
+    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'action.edit'|trans }}</a>
 
     {{ include('admin/users/_delete_form.html.twig') }}
 {% endblock %}

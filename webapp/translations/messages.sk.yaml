@@ -1,0 +1,18 @@
+action.delete: Vymazať
+action.edit: Upraviť
+action.new: Nový
+action.reset: Reset
+action.show: Zobraziť
+action.submit: Odoslať
+label.created_at: Vytvorený
+label.email: Email
+label.first_name: Meno
+label.is_active: Aktívny
+label.last_name: Priezvisko
+label.password: Heslo
+label.roles: Role
+result.no_results: 'Žiadne výsledky'
+title.user_edit: 'Upraviť užívateľa'
+title.user_new: 'Nový užívateľ'
+title.user_show: 'Zobraziť užívateľa'
+title.users: Užívatelia

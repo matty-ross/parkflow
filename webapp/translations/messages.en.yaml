@@ -1,0 +1,18 @@
+action.delete: Delete
+action.edit: Edit
+action.new: New
+action.reset: Reset
+action.show: Show
+action.submit: Submit
+label.created_at: 'Created at'
+label.email: Email
+label.first_name: 'First name'
+label.is_active: Active
+label.last_name: 'Last name'
+label.password: Password
+label.roles: Roles
+result.no_results: 'No results'
+title.user_edit: 'Edit user'
+title.user_new: 'New user'
+title.user_show: User
+title.users: Users
