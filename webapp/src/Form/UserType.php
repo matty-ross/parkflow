@@ -11,17 +11,24 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var bool */
+        $edit = $options['edit'];
+        
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'label.password',
+                'required' => !$edit,
+                'mapped' => false,
+                'constraints' => $edit ? [] : [new Assert\NotBlank],
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'label.first_name',
@@ -52,5 +59,7 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+
+        $resolver->setRequired(['edit'])->setAllowedTypes('edit', ['bool']);
     }
 }

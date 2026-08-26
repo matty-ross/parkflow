@@ -1,26 +1,27 @@
-<nav class="navbar navbar-expand bg-body-tertiary">
-    <a href="#" class="navbar-brand">ParkFlow</a>
-
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="navbar-content" class="navbar-collapse collapse">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="{{ path('app_admin_users_index') }}" class="nav-link">{{ 'title.users'|trans }}</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-            {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+<div class="bg-body-tertiary">
+    <nav class="navbar navbar-expand container">
+        <a href="#" class="navbar-brand">ParkFlow</a>
+    
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">{{ 'en'|locale_name('en')|u.title }}</a></li>
-            <li><a class="dropdown-item" href="#">{{ 'sk'|locale_name('sk')|u.title }}</a></li>
-        </ul>
-    </div>
-  </div>
-</nav>
+    
+        <div id="navbar-content" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{{ path('app_admin_users_index') }}" class="nav-link">{{ 'title.users'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">{{ 'en'|locale_name('en')|u.title }}</a></li>
+                <li><a class="dropdown-item" href="#">{{ 'sk'|locale_name('sk')|u.title }}</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

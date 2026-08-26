@@ -8,7 +8,7 @@
             <tbody>
                 <tr>
                     <th>{{ 'label.created_at'|trans }}</th>
-                    <td>{{ user.createdAt|date('Y-m-d H:i:s T') }}</td>
+                    <td>{{ user.createdAt|date('Y-m-d H:i:s') }}</td>
                 </tr>
                 <tr>
                     <th>{{ 'label.email'|trans }}</th>
@@ -24,7 +24,11 @@
                 </tr>
                 <tr>
                     <th>{{ 'label.roles'|trans }}</th>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>
+                        {% for role in user.roles ?? [] %}
+                            <span class="badge text-bg-secondary">{{ role }}</span>
+                        {% endfor %}
+                    </td>
                 </tr>
                 <tr>
                     <th>{{ 'label.is_active'|trans }}</th>
@@ -35,6 +39,9 @@
     </div>
 
     <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'action.edit'|trans }}</a>
-
-    {{ include('admin/users/_delete_form.html.twig') }}
+    
+    <form method="post" action="{{ path('app_admin_users_delete', {'id': user.id}) }}" class="d-inline">
+        <input type="hidden" name="_token" value="{{ csrf_token('app_admin_users_delete' ~ user.id) }}">
+        <button type="submit" class="btn btn-danger">{{ 'action.delete'|trans }}</button>
+    </form>
 {% endblock %}

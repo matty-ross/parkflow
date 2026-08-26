@@ -42,11 +42,15 @@ final class UserController extends AbstractController
     public function new(Request $request): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, [
+            'edit' => false,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            $password = $form['password']->getData();
+            $user->setPassword($this->passwordHasher->hashPassword($user, $password));
+            
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
@@ -62,13 +66,16 @@ final class UserController extends AbstractController
     #[Route('/{id<\d+>}/edit', name: '_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, [
+            'edit' => true,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($user->getPassword()) {
-                $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            if ($password = $form['password']->getData()) {
+                $user->setPassword($this->passwordHasher->hashPassword($user, $password));
             }
+            
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);

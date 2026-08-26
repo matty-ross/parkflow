@@ -7,6 +7,7 @@ action.submit: Submit
 label.created_at: 'Created at'
 label.email: Email
 label.first_name: 'First name'
+label.full_name: 'Full name'
 label.is_active: Active
 label.last_name: 'Last name'
 label.password: Password
