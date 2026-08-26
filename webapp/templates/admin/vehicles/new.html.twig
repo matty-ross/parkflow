@@ -1,0 +1,7 @@
+{% extends 'admin/vehicles/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.vehicle_new'|trans }}</h1>
+
+    {{ include('admin/vehicles/_form.html.twig') }}
+{% endblock %}

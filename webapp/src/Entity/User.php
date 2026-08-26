@@ -64,6 +64,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->vehicles = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
+
     /**
      * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
      */

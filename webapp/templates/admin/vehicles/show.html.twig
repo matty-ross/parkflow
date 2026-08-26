@@ -1,0 +1,35 @@
+{% extends 'admin/vehicles/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.vehicle_show'|trans }}</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>{{ 'label.created_at'|trans }}</th>
+                    <td>{{ vehicle.createdAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.owner'|trans }}</th>
+                    <td>{{ vehicle.owner }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <td>{{ vehicle.licensePlate }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.description'|trans }}</th>
+                    <td>{{ vehicle.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('app_admin_vehicles_edit', {'id': vehicle.id}) }}" class="btn btn-primary">{{ 'action.edit'|trans }}</a>
+
+    <form method="post" action="{{ path('app_admin_vehicles_delete', {'id': vehicle.id}) }}" class="d-inline">
+        <input type="hidden" name="_token" value="{{ csrf_token('app_admin_vehicles_delete' ~ vehicle.id) }}">
+        <button type="submit" class="btn btn-danger">{{ 'action.delete'|trans }}</button>
+    </form>
+{% endblock %}

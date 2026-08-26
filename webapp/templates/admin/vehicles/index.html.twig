@@ -1,0 +1,38 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ parent() ~ ' | ' ~ 'title.vehicles'|trans }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'title.vehicles'|trans }}</h1>
+
+    <a href="{{ path('app_admin_vehicles_new') }}" class="btn btn-primary">{{ 'action.new'|trans }}</a>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'label.owner'|trans }}</th>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_admin_users_show', {'id': vehicle.owner.id}) }}">{{ vehicle.owner }}</a>
+                    </td>
+                    <td>{{ vehicle.licensePlate }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_vehicles_show', {'id': vehicle.id}) }}" class="btn btn-sm btn-outline-primary">{{ 'action.show'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">{{ 'result.no_results'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
