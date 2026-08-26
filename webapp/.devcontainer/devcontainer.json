@@ -11,9 +11,11 @@
 	"customizations": {
 		"vscode": {
             "extensions": [
+                "editorconfig.editorconfig",
                 "bmewburn.vscode-intelephense-client",
                 "xdebug.php-debug",
-                "stanislav.vscode-twig"
+                "stanislav.vscode-twig",
+                "zignd.html-css-class-completion"
             ],
             "settings": {
                 "launch": {

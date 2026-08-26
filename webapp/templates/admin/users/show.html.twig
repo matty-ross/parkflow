@@ -39,7 +39,7 @@
     </div>
 
     <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'action.edit'|trans }}</a>
-    
+
     <form method="post" action="{{ path('app_admin_users_delete', {'id': user.id}) }}" class="d-inline">
         <input type="hidden" name="_token" value="{{ csrf_token('app_admin_users_delete' ~ user.id) }}">
         <button type="submit" class="btn btn-danger">{{ 'action.delete'|trans }}</button>

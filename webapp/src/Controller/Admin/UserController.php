@@ -19,9 +19,8 @@ final class UserController extends AbstractController
         private EntityManagerInterface $entityManager,
         private UserPasswordHasherInterface $passwordHasher,
         private UserRepository $userRepository,
-    ) {
-    }
-    
+    ) {}
+
     #[Route('', name: '_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
@@ -50,7 +49,7 @@ final class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $form['password']->getData();
             $user->setPassword($this->passwordHasher->hashPassword($user, $password));
-            
+
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
@@ -75,7 +74,7 @@ final class UserController extends AbstractController
             if ($password = $form['password']->getData()) {
                 $user->setPassword($this->passwordHasher->hashPassword($user, $password));
             }
-            
+
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
@@ -90,7 +89,7 @@ final class UserController extends AbstractController
     #[Route('/{id<\d+>}/delete', name: '_delete', methods: ['POST'])]
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('app_admin_users_delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('app_admin_users_delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
             $this->entityManager->remove($user);
             $this->entityManager->flush();
         }

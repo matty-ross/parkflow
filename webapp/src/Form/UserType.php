@@ -19,7 +19,7 @@ class UserType extends AbstractType
     {
         /** @var bool */
         $edit = $options['edit'];
-        
+
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
@@ -28,7 +28,7 @@ class UserType extends AbstractType
                 'label' => 'label.password',
                 'required' => !$edit,
                 'mapped' => false,
-                'constraints' => $edit ? [] : [new Assert\NotBlank],
+                'constraints' => $edit ? [] : [new Assert\NotBlank()],
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'label.first_name',
