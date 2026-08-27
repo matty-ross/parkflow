@@ -38,10 +38,10 @@
         </table>
     </div>
 
-    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'action.edit'|trans }}</a>
+    <a href="{{ path('app_admin_users_edit', {'id': user.id}) }}" class="btn btn-primary"><i class="bi bi-pencil me-1"></i>{{ 'action.edit'|trans }}</a>
 
     <form method="post" action="{{ path('app_admin_users_delete', {'id': user.id}) }}" class="d-inline">
         <input type="hidden" name="_token" value="{{ csrf_token('app_admin_users_delete' ~ user.id) }}">
-        <button type="submit" class="btn btn-danger">{{ 'action.delete'|trans }}</button>
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>{{ 'action.delete'|trans }}</button>
     </form>
 {% endblock %}

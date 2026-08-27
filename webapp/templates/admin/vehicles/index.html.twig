@@ -5,7 +5,7 @@
 {% block main %}
     <h1>{{ 'title.vehicles'|trans }}</h1>
 
-    <a href="{{ path('app_admin_vehicles_new') }}" class="btn btn-primary">{{ 'action.new'|trans }}</a>
+    <a href="{{ path('app_admin_vehicles_new') }}" class="btn btn-primary"><i class="bi bi-plus me-1"></i>{{ 'action.new'|trans }}</a>
 
     <div class="table-responsive">
         <table class="table align-middle">
@@ -24,7 +24,7 @@
                     </td>
                     <td>{{ vehicle.licensePlate }}</td>
                     <td>
-                        <a href="{{ path('app_admin_vehicles_show', {'id': vehicle.id}) }}" class="btn btn-sm btn-outline-primary">{{ 'action.show'|trans }}</a>
+                        <a href="{{ path('app_admin_vehicles_show', {'id': vehicle.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye me-1"></i>{{ 'action.show'|trans }}</a>
                     </td>
                 </tr>
             {% else %}
