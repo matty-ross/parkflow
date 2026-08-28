@@ -37,8 +37,8 @@ final class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: '_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    #[Route('/create', name: '_create', methods: ['GET', 'POST'])]
+    public function create(Request $request): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user, [
@@ -56,7 +56,7 @@ final class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/users/new.html.twig', [
+        return $this->render('admin/users/create.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

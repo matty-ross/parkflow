@@ -1,7 +1,6 @@
+action.create: Vytvoriť
 action.delete: Vymazať
 action.edit: Upraviť
-action.new: Nový
-action.reset: Reset
 action.show: Zobraziť
 action.submit: Odoslať
 label.created_at: Vytvorený
@@ -16,11 +15,11 @@ label.owner: Vlastník
 label.password: Heslo
 label.roles: Role
 result.no_results: 'Žiadne výsledky'
+title.user_create: 'Vytvoriť používateľa'
 title.user_edit: 'Upraviť používateľa'
-title.user_new: 'Nový používateľ'
 title.user_show: Používateľ
 title.users: Používatelia
+title.vehicle_create: 'Vytvoriť vozidlo'
 title.vehicle_edit: 'Upraviť vozidlo'
-title.vehicle_new: 'Nové vozidlo'
 title.vehicle_show: Vozidlo
 title.vehicles: Vozidlá

@@ -1,7 +1,6 @@
+action.create: Create
 action.delete: Delete
 action.edit: Edit
-action.new: New
-action.reset: Reset
 action.show: Show
 action.submit: Submit
 label.created_at: 'Created at'
@@ -16,11 +15,11 @@ label.owner: Owner
 label.password: Password
 label.roles: Roles
 result.no_results: 'No results'
+title.user_create: 'Create user'
 title.user_edit: 'Edit user'
-title.user_new: 'New user'
 title.user_show: User
 title.users: Users
+title.vehicle_create: 'Create vehicle'
 title.vehicle_edit: 'Edit vehicle'
-title.vehicle_new: 'New vehicle'
 title.vehicle_show: 'Vehicle'
 title.vehicles: 'Vehicles'

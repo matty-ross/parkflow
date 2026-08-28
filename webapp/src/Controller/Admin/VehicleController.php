@@ -35,8 +35,8 @@ final class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: '_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    #[Route('/create', name: '_create', methods: ['GET', 'POST'])]
+    public function create(Request $request): Response
     {
         $vehicle = new Vehicle();
         $form = $this->createForm(VehicleType::class, $vehicle);
@@ -49,7 +49,7 @@ final class VehicleController extends AbstractController
             return $this->redirectToRoute('app_admin_vehicles_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/vehicles/new.html.twig', [
+        return $this->render('admin/vehicles/create.html.twig', [
             'vehicle' => $vehicle,
             'form' => $form,
         ]);
