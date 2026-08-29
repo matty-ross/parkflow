@@ -15,6 +15,12 @@ label.owner: Owner
 label.password: Password
 label.roles: Roles
 result.no_results: 'No results'
+result.user_created: 'User created'
+result.user_deleted: 'User deleted'
+result.user_edited: 'User edited'
+result.vehicle_created: 'Vehicle created'
+result.vehicle_deleted: 'Vehicle deleted'
+result.vehicle_edited: 'Vehicle edited'
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'
 title.user_show: User

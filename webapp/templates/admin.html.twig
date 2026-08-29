@@ -8,5 +8,16 @@
     <main class="container">
         {% block main %}
         {% endblock %}
+
+        <div class="toast-container position-relative ms-auto">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="toast d-flex justify-content-between align-items-center text-bg-success">
+                    <div class="toast-body">{{ message|trans }}</div>
+                    <button type="button" class="btn-close me-2" data-bs-dismiss="toast"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
     </main>
 {% endblock %}

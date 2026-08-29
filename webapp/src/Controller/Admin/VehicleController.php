@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/vehicle', name: 'app_admin_vehicles')]
+#[Route('/admin/vehicles', name: 'app_admin_vehicles')]
 final class VehicleController extends AbstractController
 {
     public function __construct(
@@ -46,7 +46,9 @@ final class VehicleController extends AbstractController
             $this->entityManager->persist($vehicle);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_vehicles_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('notice', 'result.vehicle_created');
+
+            return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/vehicles/create.html.twig', [
@@ -64,7 +66,9 @@ final class VehicleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_vehicles_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('notice', 'result.vehicle_edited');
+
+            return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/vehicles/edit.html.twig', [
@@ -79,8 +83,10 @@ final class VehicleController extends AbstractController
         if ($this->isCsrfTokenValid('app_admin_vehicles_delete'.$vehicle->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($vehicle);
             $entityManager->flush();
+
+            $this->addFlash('notice', 'result.vehicle_deleted');
         }
 
-        return $this->redirectToRoute('app_admin_vehicles_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
     }
 }

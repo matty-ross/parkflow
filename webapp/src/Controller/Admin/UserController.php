@@ -53,7 +53,9 @@ final class UserController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('notice', 'result.user_created');
+
+            return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/users/create.html.twig', [
@@ -77,7 +79,9 @@ final class UserController extends AbstractController
 
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('notice', 'result.user_edited');
+
+            return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/users/edit.html.twig', [
@@ -92,8 +96,10 @@ final class UserController extends AbstractController
         if ($this->isCsrfTokenValid('app_admin_users_delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
             $this->entityManager->remove($user);
             $this->entityManager->flush();
+
+            $this->addFlash('notice', 'result.user_deleted');
         }
 
-        return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
     }
 }
