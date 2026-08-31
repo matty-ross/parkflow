@@ -59,9 +59,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Vehicle::class, mappedBy: 'owner', orphanRemoval: true)]
     private Collection $vehicles;
 
+    /**
+     * @var Collection<int, Record>
+     */
+    #[ORM\OneToMany(targetEntity: Record::class, mappedBy: 'recognizedUser')]
+    private Collection $records;
+
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
+        $this->records = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -207,6 +214,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($vehicle->getOwner() === $this) {
                 $vehicle->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Record>
+     */
+    public function getRecords(): Collection
+    {
+        return $this->records;
+    }
+
+    public function addRecord(Record $record): static
+    {
+        if (!$this->records->contains($record)) {
+            $this->records->add($record);
+            $record->setRecognizedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecord(Record $record): static
+    {
+        if ($this->records->removeElement($record)) {
+            // set the owning side to null (unless already changed)
+            if ($record->getRecognizedUser() === $this) {
+                $record->setRecognizedUser(null);
             }
         }
 
