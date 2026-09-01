@@ -6,13 +6,17 @@ action.submit: Submit
 label.created_at: 'Created at'
 label.description: Description
 label.email: Email
+label.entered_at: 'Entered at'
+label.exited_at: 'Exited at'
 label.first_name: 'First name'
+label.free_until: 'Free until'
 label.full_name: 'Full name'
 label.is_active: Active
 label.last_name: 'Last name'
 label.license_plate: 'License plate'
 label.owner: Owner
 label.password: Password
+label.recognized_user: 'Recognized user'
 label.roles: Roles
 result.no_results: 'No results'
 result.user_created: 'User created'
@@ -21,11 +25,13 @@ result.user_edited: 'User edited'
 result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
+title.record_show: 'Record'
+title.records: 'Records'
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'
 title.user_show: User
 title.users: Users
 title.vehicle_create: 'Create vehicle'
 title.vehicle_edit: 'Edit vehicle'
-title.vehicle_show: 'Vehicle'
-title.vehicles: 'Vehicles'
+title.vehicle_show: Vehicle
+title.vehicles: Vehicles

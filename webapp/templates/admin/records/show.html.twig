@@ -1,0 +1,36 @@
+{% extends 'admin/records/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.record_show'|trans }}</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <td>{{ record.licensePlate }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.recognized_user'|trans }}</th>
+                    <td>
+                        {% if record.recognizedUser %}
+                            <a href="{{ path('app_admin_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.entered_at'|trans }}</th>
+                    <td>{{ record.enteredAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.exited_at'|trans }}</th>
+                    <td>{{ record.exitedAt ? record.exitedAt|date('Y-m-d H:i:s') : null }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.free_until'|trans }}</th>
+                    <td>{{ record.freeUntil|date('Y-m-d H:i:s') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
