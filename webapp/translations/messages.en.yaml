@@ -27,13 +27,13 @@ result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
 title.record_edit: 'Edit record'
-title.record_show: Record
+title.record: Record
 title.records: Records
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'
-title.user_show: User
+title.user: User
 title.users: Users
 title.vehicle_create: 'Create vehicle'
 title.vehicle_edit: 'Edit vehicle'
-title.vehicle_show: Vehicle
+title.vehicle: Vehicle
 title.vehicles: Vehicles

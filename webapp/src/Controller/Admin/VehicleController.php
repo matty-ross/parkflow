@@ -52,7 +52,6 @@ final class VehicleController extends AbstractController
         }
 
         return $this->render('admin/vehicles/create.html.twig', [
-            'vehicle' => $vehicle,
             'form' => $form,
         ]);
     }
@@ -72,7 +71,6 @@ final class VehicleController extends AbstractController
         }
 
         return $this->render('admin/vehicles/edit.html.twig', [
-            'vehicle' => $vehicle,
             'form' => $form,
         ]);
     }

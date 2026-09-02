@@ -27,13 +27,13 @@ result.vehicle_created: 'Vozidlo vytvorené'
 result.vehicle_deleted: 'Vozidlo vymazané'
 result.vehicle_edited: 'Vozidlo upravené'
 title.record_edit: 'Upraviť záznam'
-title.record_show: Záznam
+title.record: Záznam
 title.records: Záznamy
 title.user_create: 'Vytvoriť používateľa'
 title.user_edit: 'Upraviť používateľa'
-title.user_show: Používateľ
+title.user: Používateľ
 title.users: Používatelia
 title.vehicle_create: 'Vytvoriť vozidlo'
 title.vehicle_edit: 'Upraviť vozidlo'
-title.vehicle_show: Vozidlo
+title.vehicle: Vozidlo
 title.vehicles: Vozidlá

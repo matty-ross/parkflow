@@ -50,7 +50,6 @@ final class RecordController extends AbstractController
         }
 
         return $this->render('admin/records/edit.html.twig', [
-            'record' => $record,
             'form' => $form,
         ]);
     }
