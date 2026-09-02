@@ -19,12 +19,14 @@ label.password: Heslo
 label.recognized_user: 'Rozpoznaný používateľ'
 label.roles: Role
 result.no_results: 'Žiadne výsledky'
+result.record_edited: 'Záznam upravený'
 result.user_created: 'Používateľ vytvorený'
 result.user_deleted: 'Používateľ vymazaný'
 result.user_edited: 'Používateľ upravený'
 result.vehicle_created: 'Vozidlo vytvorené'
 result.vehicle_deleted: 'Vozidlo vymazané'
 result.vehicle_edited: 'Vozidlo upravené'
+title.record_edit: 'Upraviť záznam'
 title.record_show: Záznam
 title.records: Záznamy
 title.user_create: 'Vytvoriť používateľa'

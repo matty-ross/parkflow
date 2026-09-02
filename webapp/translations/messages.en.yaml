@@ -19,14 +19,16 @@ label.password: Password
 label.recognized_user: 'Recognized user'
 label.roles: Roles
 result.no_results: 'No results'
+result.record_edited: 'Record edited'
 result.user_created: 'User created'
 result.user_deleted: 'User deleted'
 result.user_edited: 'User edited'
 result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
-title.record_show: 'Record'
-title.records: 'Records'
+title.record_edit: 'Edit record'
+title.record_show: Record
+title.records: Records
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'
 title.user_show: User

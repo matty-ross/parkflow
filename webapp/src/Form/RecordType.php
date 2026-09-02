@@ -17,6 +17,7 @@ class RecordType extends AbstractType
         $builder
             ->add('recognizedUser', EntityType::class, [
                 'label' => 'label.recognized_user',
+                'required' => false,
                 'class' => User::class,
             ])
             ->add('freeUntil', DateTimeType::class, [
