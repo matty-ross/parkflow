@@ -22,15 +22,14 @@
 
         <div class="dropdown">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="bi bi-translate me-1"></i>{{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                <i class="bi bi-translate me-1"></i>{{ app.locale|locale_name(app.locale)|u.title }}
             </button>
             <ul class="dropdown-menu">
+            {% for locale in app.enabled_locales %}
                 <li>
-                    <a href="{{ path('app_admin_home_locale', {'_locale': 'en'}) }}" class="dropdown-item" data-turbo="false">{{ 'en'|locale_name('en')|u.title }}</a>
+                    <a href="{{ path('app_admin_home_index', {'_locale': locale}) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
                 </li>
-                <li>
-                    <a href="{{ path('app_admin_home_locale', {'_locale': 'sk'}) }}" class="dropdown-item" data-turbo="false">{{ 'sk'|locale_name('sk')|u.title }}</a>
-                </li>
+            {% endfor %}
             </ul>
         </div>
     </nav>

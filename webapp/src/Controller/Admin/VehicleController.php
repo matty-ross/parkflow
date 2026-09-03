@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/vehicles', name: 'app_admin_vehicles')]
+#[Route('/admin/{_locale}/vehicles', name: 'app_admin_vehicles')]
 final class VehicleController extends AbstractController
 {
     public function __construct(

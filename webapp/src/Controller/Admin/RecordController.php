@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/records', name: 'app_admin_records')]
+#[Route('/admin/{_locale}/records', name: 'app_admin_records')]
 final class RecordController extends AbstractController
 {
     public function __construct(
