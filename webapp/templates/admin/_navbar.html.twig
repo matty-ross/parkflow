@@ -1,6 +1,6 @@
 <div class="bg-body-tertiary">
     <nav class="navbar navbar-expand container">
-        <a href="#" class="navbar-brand">ParkFlow</a>
+        <a href="{{ path('app_admin_home_index') }}" class="navbar-brand">ParkFlow</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>
@@ -25,8 +25,12 @@
                 <i class="bi bi-translate me-1"></i>{{ app.request.locale|locale_name(app.request.locale)|u.title }}
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">{{ 'en'|locale_name('en')|u.title }}</a></li>
-                <li><a class="dropdown-item" href="#">{{ 'sk'|locale_name('sk')|u.title }}</a></li>
+                <li>
+                    <a href="{{ path('app_admin_home_locale', {'_locale': 'en'}) }}" class="dropdown-item" data-turbo="false">{{ 'en'|locale_name('en')|u.title }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_home_locale', {'_locale': 'sk'}) }}" class="dropdown-item" data-turbo="false">{{ 'sk'|locale_name('sk')|u.title }}</a>
+                </li>
             </ul>
         </div>
     </nav>
