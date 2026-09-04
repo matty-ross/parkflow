@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecordRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +37,17 @@ class Record
 
     #[ORM\Column(type: Types::DATETIMETZ_MUTABLE, index: true)]
     private ?\DateTime $freeUntil = null;
+
+    /**
+     * @var Collection<int, Payment>
+     */
+    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'record', orphanRemoval: true)]
+    private Collection $payments;
+
+    public function __construct()
+    {
+        $this->payments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +134,36 @@ class Record
     public function setFreeUntil(?\DateTime $freeUntil): static
     {
         $this->freeUntil = $freeUntil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Payment>
+     */
+    public function getPayments(): Collection
+    {
+        return $this->payments;
+    }
+
+    public function addPayment(Payment $payment): static
+    {
+        if (!$this->payments->contains($payment)) {
+            $this->payments->add($payment);
+            $payment->setRecord($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayment(Payment $payment): static
+    {
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getRecord() === $this) {
+                $payment->setRecord(null);
+            }
+        }
 
         return $this;
     }
