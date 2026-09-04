@@ -1,0 +1,46 @@
+{% extends 'admin/payments/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.payment'|trans }}</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>{{ 'label.paid_at'|trans }}</th>
+                    <td>{{ payment.paidAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <td>
+                        <a href="{{ path('app_admin_records_show', {'id': payment.record.id}) }}">{{ payment.record.licensePlate }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.amount_excluding_vat'|trans }}</th>
+                    <td>{{ payment.amountExcludingVat ~ ' ' ~ payment.currencyCode }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.amount_including_vat'|trans }}</th>
+                    <td>{{ payment.amountIncludingVat ~ ' ' ~ payment.currencyCode }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.vat_rate'|trans }}</th>
+                    <td>{{ payment.vatRate ~ ' %' }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.currency'|trans }}</th>
+                    <td>{{ payment.currencyCode }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.old_record_free_until'|trans }}</th>
+                    <td>{{ payment.oldRecordFreeUntil|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'label.new_record_free_until'|trans }}</th>
+                    <td>{{ payment.newRecordFreeUntil|date('Y-m-d H:i:s') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

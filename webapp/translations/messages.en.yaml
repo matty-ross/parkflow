@@ -3,7 +3,10 @@ action.delete: Delete
 action.edit: Edit
 action.show: Show
 action.submit: Submit
+label.amount_excluding_vat: 'Amount excluding VAT'
+label.amount_including_vat: 'Amount including VAT'
 label.created_at: 'Created at'
+label.currency: Currency
 label.description: Description
 label.email: Email
 label.entered_at: 'Entered at'
@@ -14,10 +17,14 @@ label.full_name: 'Full name'
 label.is_active: Active
 label.last_name: 'Last name'
 label.license_plate: 'License plate'
+label.new_record_free_until: 'New record free until'
+label.old_record_free_until: 'Old record free until'
 label.owner: Owner
+label.paid_at: 'Paid at'
 label.password: Password
 label.recognized_user: 'Recognized user'
 label.roles: Roles
+label.vat_rate: 'VAT rate'
 result.no_results: 'No results'
 result.record_edited: 'Record edited'
 result.user_created: 'User created'
@@ -26,14 +33,16 @@ result.user_edited: 'User edited'
 result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
-title.record_edit: 'Edit record'
+title.payment: Payment
+title.payments: Payments
 title.record: Record
+title.record_edit: 'Edit record'
 title.records: Records
+title.user: User
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'
-title.user: User
 title.users: Users
+title.vehicle: Vehicle
 title.vehicle_create: 'Create vehicle'
 title.vehicle_edit: 'Edit vehicle'
-title.vehicle: Vehicle
 title.vehicles: Vehicles

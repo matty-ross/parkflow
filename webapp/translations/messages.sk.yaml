@@ -3,7 +3,10 @@ action.delete: Vymazať
 action.edit: Upraviť
 action.show: Zobraziť
 action.submit: Odoslať
+label.amount_excluding_vat: 'Suma bez DPH'
+label.amount_including_vat: 'Suma s DPH'
 label.created_at: Vytvorený
+label.currency: Mena
 label.description: Popis
 label.email: Email
 label.entered_at: Vstúpil
@@ -14,10 +17,14 @@ label.full_name: 'Celé meno'
 label.is_active: Aktívny
 label.last_name: Priezvisko
 label.license_plate: EČV
+label.new_record_free_until: 'Nový záznam zadarmo do'
+label.old_record_free_until: 'Starý záznam zadarmo do'
 label.owner: Vlastník
+label.paid_at: Zaplatené
 label.password: Heslo
 label.recognized_user: 'Rozpoznaný používateľ'
 label.roles: Role
+label.vat_rate: 'Sadzba DPH'
 result.no_results: 'Žiadne výsledky'
 result.record_edited: 'Záznam upravený'
 result.user_created: 'Používateľ vytvorený'
@@ -26,14 +33,16 @@ result.user_edited: 'Používateľ upravený'
 result.vehicle_created: 'Vozidlo vytvorené'
 result.vehicle_deleted: 'Vozidlo vymazané'
 result.vehicle_edited: 'Vozidlo upravené'
-title.record_edit: 'Upraviť záznam'
+title.payment: Platba
+title.payments: Platby
 title.record: Záznam
+title.record_edit: 'Upraviť záznam'
 title.records: Záznamy
+title.user: Používateľ
 title.user_create: 'Vytvoriť používateľa'
 title.user_edit: 'Upraviť používateľa'
-title.user: Používateľ
 title.users: Používatelia
+title.vehicle: Vozidlo
 title.vehicle_create: 'Vytvoriť vozidlo'
 title.vehicle_edit: 'Upraviť vozidlo'
-title.vehicle: Vozidlo
 title.vehicles: Vozidlá

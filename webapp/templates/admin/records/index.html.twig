@@ -19,9 +19,7 @@
             <tbody>
             {% for record in records %}
                 <tr>
-                    <td>
-                        {{ record.licensePlate }}
-                    </td>
+                    <td>{{ record.licensePlate }}</td>
                     <td>
                         {% if record.recognizedUser %}
                             <a href="{{ path('app_admin_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>

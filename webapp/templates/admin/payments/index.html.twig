@@ -1,0 +1,38 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ parent() ~ ' | ' ~ 'title.payments'|trans }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'title.payments'|trans }}</h1>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>{{ 'label.paid_at'|trans }}</th>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <th>{{ 'label.amount_including_vat'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.paidAt|date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_records_show', {'id': payment.record.id}) }}">{{ payment.record.licensePlate }}</a>
+                    </td>
+                    <td>{{ payment.amountIncludingVat ~ ' ' ~ payment.currencyCode }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_payments_show', {'id': payment.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye me-1"></i>{{ 'action.show'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">{{ 'result.no_results'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
