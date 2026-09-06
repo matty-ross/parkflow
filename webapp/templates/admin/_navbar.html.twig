@@ -9,30 +9,30 @@
         <div id="navbar-content" class="navbar-collapse collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ path('app_admin_users_index') }}" class="nav-link"><i class="bi bi-person me-1"></i>{{ 'title.users'|trans }}</a>
+                    <a href="{{ path('app_admin_users_index') }}" class="nav-link"><i class="bi bi-person"></i>{{ 'title.users'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('app_admin_vehicles_index') }}" class="nav-link"><i class="bi bi-car-front me-1"></i>{{ 'title.vehicles'|trans }}</a>
+                    <a href="{{ path('app_admin_vehicles_index') }}" class="nav-link"><i class="bi bi-car-front"></i>{{ 'title.vehicles'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('app_admin_records_index') }}" class="nav-link"><i class="bi bi-p-square me-1"></i>{{ 'title.records'|trans }}</a>
+                    <a href="{{ path('app_admin_records_index') }}" class="nav-link"><i class="bi bi-p-square"></i>{{ 'title.records'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('app_admin_payments_index') }}" class="nav-link"><i class="bi bi-credit-card me-1"></i>{{ 'title.payments'|trans }}</a>
+                    <a href="{{ path('app_admin_payments_index') }}" class="nav-link"><i class="bi bi-credit-card"></i>{{ 'title.payments'|trans }}</a>
                 </li>
             </ul>
         </div>
 
         <div class="dropdown">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="bi bi-translate me-1"></i>{{ app.locale|locale_name(app.locale)|u.title }}
+                <i class="bi bi-translate"></i>{{ app.locale|locale_name(app.locale)|u.title }}
             </button>
             <ul class="dropdown-menu">
-            {% for locale in app.enabled_locales %}
-                <li>
-                    <a href="{{ path('app_admin_home_index', {'_locale': locale}) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
-                </li>
-            {% endfor %}
+                {% for locale in app.enabled_locales %}
+                    <li>
+                        <a href="{{ path('app_admin_home_index', {'_locale': locale}) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </nav>
