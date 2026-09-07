@@ -24,15 +24,26 @@
         </div>
 
         <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="bi bi-translate"></i>{{ app.locale|locale_name(app.locale)|u.title }}
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                <i class="bi bi-person-circle"></i>
             </button>
             <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item-text">{{ app.user.email }}</div>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <div class="dropdown-header"><i class="bi bi-translate"></i>{{ 'label.locale'|trans }}</div>
+                </li>
                 {% for locale in app.enabled_locales %}
                     <li>
                         <a href="{{ path('app_admin_home_index', {'_locale': locale}) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
                     </li>
                 {% endfor %}
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-right"></i>{{ 'action.logout'|trans }}</a>
+                </li>
             </ul>
         </div>
     </nav>

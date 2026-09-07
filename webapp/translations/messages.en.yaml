@@ -1,6 +1,8 @@
 action.create: Create
 action.delete: Delete
 action.edit: Edit
+action.login: Login
+action.logout: Logout
 action.show: Show
 action.submit: Submit
 label.amount_excluding_vat: 'Amount excluding VAT'
@@ -17,6 +19,7 @@ label.full_name: 'Full name'
 label.is_active: Active
 label.last_name: 'Last name'
 label.license_plate: 'License plate'
+label.locale: Locale
 label.new_record_free_until: 'New record free until'
 label.old_record_free_until: 'Old record free until'
 label.owner: Owner
@@ -33,6 +36,7 @@ result.user_edited: 'User edited'
 result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
+title.login: Login
 title.payment: Payment
 title.payments: Payments
 title.record: Record
