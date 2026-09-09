@@ -1,0 +1,12 @@
+<div class="dropdown">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+        <i class="bi bi-translate"></i>{{ app.locale|locale_name(app.locale)|u.title }}
+    </button>
+    <ul class="dropdown-menu">
+        {% for locale in app.enabled_locales %}
+            <li>
+                <a href="{{ path(app.current_route, app.current_route_parameters|merge({'_locale': locale})) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

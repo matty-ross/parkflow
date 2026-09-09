@@ -31,20 +31,12 @@
                 <li>
                     <div class="dropdown-item-text">{{ app.user.email }}</div>
                 </li>
-                <li><hr class="dropdown-divider"></li>
                 <li>
-                    <div class="dropdown-header"><i class="bi bi-translate"></i>{{ 'label.locale'|trans }}</div>
-                </li>
-                {% for locale in app.enabled_locales %}
-                    <li>
-                        <a href="{{ path('app_admin_home_index', {'_locale': locale}) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
-                    </li>
-                {% endfor %}
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-right"></i>{{ 'action.logout'|trans }}</a>
+                    <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-left"></i>{{ 'action.logout'|trans }}</a>
                 </li>
             </ul>
         </div>
+
+        {% include '_locale_switcher.html.twig' %}
     </nav>
 </div>
