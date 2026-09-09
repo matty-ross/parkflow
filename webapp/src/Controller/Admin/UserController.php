@@ -11,8 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/{_locale}/users', name: 'app_admin_users')]
+#[Route('/{_locale}/admin/users', name: 'app_admin_users')]
+#[IsGranted(User::ROLE_ADMIN)]
 final class UserController extends AbstractController
 {
     public function __construct(

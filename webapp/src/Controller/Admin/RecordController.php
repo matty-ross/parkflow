@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Record;
+use App\Entity\User;
 use App\Form\RecordType;
 use App\Repository\RecordRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,8 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/{_locale}/records', name: 'app_admin_records')]
+#[Route('/{_locale}/admin/records', name: 'app_admin_records')]
+#[IsGranted(User::ROLE_ADMIN)]
 final class RecordController extends AbstractController
 {
     public function __construct(

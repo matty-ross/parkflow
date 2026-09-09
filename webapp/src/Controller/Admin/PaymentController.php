@@ -3,13 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Payment;
+use App\Entity\User;
 use App\Repository\PaymentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/{_locale}/payments', name: 'app_admin_payments')]
+#[Route('/{_locale}/admin/payments', name: 'app_admin_payments')]
+#[IsGranted(User::ROLE_ADMIN)]
 final class PaymentController extends AbstractController
 {
     public function __construct(

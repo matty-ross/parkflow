@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
@@ -10,8 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/admin/{_locale}/vehicles', name: 'app_admin_vehicles')]
+#[Route('/{_locale}/admin/vehicles', name: 'app_admin_vehicles')]
+#[IsGranted(User::ROLE_ADMIN)]
 final class VehicleController extends AbstractController
 {
     public function __construct(
