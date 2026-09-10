@@ -6,7 +6,7 @@
 
 <div class="bg-body-tertiary">
     <nav class="navbar navbar-expand container" {{ stimulus_controller('navbar', controller_classes: {'active': 'active'}) }}>
-        <a href="{% block navbar_index_url %}{% endblock %}" class="navbar-brand">ParkFlow</a>
+        <a href="{% block navbar_index_url %}{# TODO: index url for home #}{% endblock %}" class="navbar-brand">ParkFlow</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>
