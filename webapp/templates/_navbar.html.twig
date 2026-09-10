@@ -1,0 +1,38 @@
+{% macro nav_item(url, icon, title) %}
+    <li class="nav-item">
+        <a href="{{ url }}" class="nav-link" {{ stimulus_target('navbar', 'navLink') }}><i class="bi {{ icon }}"></i>{{ title }}</a>
+    </li>
+{% endmacro %}
+
+<div class="bg-body-tertiary">
+    <nav class="navbar navbar-expand container" {{ stimulus_controller('navbar', controller_classes: {'active': 'active'}) }}>
+        <a href="{% block navbar_index_url %}{% endblock %}" class="navbar-brand">ParkFlow</a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar-content" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                {% block navbar_nav %}
+                {% endblock %}
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                <i class="bi bi-person-circle"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item-text">{{ app.user.email }}</div>
+                </li>
+                <li>
+                    <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-left"></i>{{ 'action.logout'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+
+        {% include '_locale_switcher.html.twig' %}
+    </nav>
+</div>

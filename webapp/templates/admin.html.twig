@@ -2,13 +2,6 @@
 
 {% block title %}{{ parent() ~ ' | ' ~ 'Admin' }}{% endblock %}
 
-{% block body %}
+{% block navbar %}
     {% include 'admin/_navbar.html.twig' %}
-
-    <main class="container">
-        {% block main %}
-        {% endblock %}
-
-        {% include 'admin/_toasts.html.twig' %}
-    </main>
 {% endblock %}

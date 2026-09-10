@@ -14,7 +14,15 @@
         {% endblock %}
     </head>
     <body data-bs-theme="dark">
-        {% block body %}
+        {% block navbar %}
+            {% include '_navbar.html.twig' %}
         {% endblock %}
+
+        <main class="container">
+            {% block main %}
+            {% endblock %}
+
+            {% include '_toasts.html.twig' %}
+        </main>
     </body>
 </html>
