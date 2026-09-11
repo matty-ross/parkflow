@@ -15,6 +15,7 @@
         <div id="navbar-content" class="navbar-collapse collapse">
             <ul class="navbar-nav">
                 {% block navbar_nav %}
+                    {{ _self.nav_item(path('app_profile_index'), 'bi-person', 'title.profile'|trans) }}
                 {% endblock %}
             </ul>
         </div>

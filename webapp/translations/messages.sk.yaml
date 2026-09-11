@@ -39,6 +39,8 @@ result.vehicle_edited: 'Vozidlo upravené'
 title.login: 'Prihlásiť sa'
 title.payment: Platba
 title.payments: Platby
+title.profile: Profil
+title.profile_edit: 'Upraviť profil'
 title.record: Záznam
 title.record_edit: 'Upraviť záznam'
 title.records: Záznamy

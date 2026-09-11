@@ -37,6 +37,7 @@ final class ProfileController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user, [
             'edit' => true,
+            'admin' => false,
         ]);
         $form->handleRequest($request);
 

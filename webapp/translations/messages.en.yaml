@@ -39,6 +39,8 @@ result.vehicle_edited: 'Vehicle edited'
 title.login: Login
 title.payment: Payment
 title.payments: Payments
+title.profile: Profile
+title.profile_edit: 'Edit profile'
 title.record: Record
 title.record_edit: 'Edit record'
 title.records: Records

@@ -45,6 +45,7 @@ final class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user, [
             'edit' => false,
+            'admin' => true,
         ]);
         $form->handleRequest($request);
 
@@ -70,6 +71,7 @@ final class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user, [
             'edit' => true,
+            'admin' => true,
         ]);
         $form->handleRequest($request);
 
