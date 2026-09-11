@@ -15,12 +15,19 @@ class VehicleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var bool */
+        $admin = $options['admin'];
+
+        if ($admin) {
+            $builder
+                ->add('owner', EntityType::class, [
+                    'label' => 'label.owner',
+                    'placeholder' => '',
+                    'class' => User::class,
+                ])
+            ;
+        }
         $builder
-            ->add('owner', EntityType::class, [
-                'label' => 'label.owner',
-                'placeholder' => '',
-                'class' => User::class,
-            ])
             ->add('licensePlate', TextType::class, [
                 'label' => 'label.license_plate',
                 'attr' => [
@@ -39,5 +46,7 @@ class VehicleType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Vehicle::class,
         ]);
+
+        $resolver->setRequired(['admin'])->setAllowedTypes('admin', ['bool']);
     }
 }

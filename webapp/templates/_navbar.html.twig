@@ -16,6 +16,7 @@
             <ul class="navbar-nav">
                 {% block navbar_nav %}
                     {{ _self.nav_item(path('app_profile_index'), 'bi-person', 'title.profile'|trans) }}
+                    {{ _self.nav_item(path('app_vehicles_index'), 'bi-car-front', 'title.vehicles'|trans) }}
                 {% endblock %}
             </ul>
         </div>

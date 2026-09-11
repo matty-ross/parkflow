@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Vehicle;
@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/{_locale}/admin/vehicles', name: 'app_admin_vehicles')]
-#[IsGranted(User::ROLE_ADMIN)]
+#[Route('/{_locale}/vehicles', name: 'app_vehicles')]
+#[IsGranted(User::ROLE_USER)]
 final class VehicleController extends AbstractController
 {
     public function __construct(
@@ -23,40 +23,46 @@ final class VehicleController extends AbstractController
     ) {}
 
     #[Route('', name: '_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(): Response
     {
-        return $this->render('admin/vehicles/index.html.twig', [
-            'vehicles' => $this->vehicleRepository->findBy(criteria: [], orderBy: ['createdAt' => 'DESC']),
+        return $this->render('vehicles/index.html.twig', [
+            'vehicles' => $this->vehicleRepository->findBy(['owner' => $this->getUser()]),
         ]);
     }
 
     #[Route('/{id<\d+>}', name: '_show', methods: ['GET'])]
-    public function show(Request $request, Vehicle $vehicle): Response
+    public function show(Vehicle $vehicle): Response
     {
-        return $this->render('admin/vehicles/show.html.twig', [
+        if ($vehicle->getOwner() !== $this->getUser()) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('vehicles/show.html.twig', [
             'vehicle' => $vehicle,
         ]);
     }
 
     #[Route('/create', name: '_create', methods: ['GET', 'POST'])]
-    public function create(Request $request): Response
+    public function new(Request $request): Response
     {
         $vehicle = new Vehicle();
         $form = $this->createForm(VehicleType::class, $vehicle, [
-            'admin' => true,
+            'admin' => false,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $vehicle->setOwner($this->getUser());
+
             $this->entityManager->persist($vehicle);
             $this->entityManager->flush();
 
             $this->addFlash('notice', 'result.vehicle_created');
 
-            return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_vehicles_index', status: Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/vehicles/create.html.twig', [
+        return $this->render('vehicles/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -64,8 +70,12 @@ final class VehicleController extends AbstractController
     #[Route('/{id<\d+>}/edit', name: '_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Vehicle $vehicle): Response
     {
+        if ($vehicle->getOwner() !== $this->getUser()) {
+            throw $this->createNotFoundException();
+        }
+
         $form = $this->createForm(VehicleType::class, $vehicle, [
-            'admin' => true,
+            'admin' => false,
         ]);
         $form->handleRequest($request);
 
@@ -74,24 +84,26 @@ final class VehicleController extends AbstractController
 
             $this->addFlash('notice', 'result.vehicle_edited');
 
-            return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_vehicles_index', status: Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/vehicles/edit.html.twig', [
+        return $this->render('vehicles/edit.html.twig', [
             'form' => $form,
         ]);
     }
 
     #[Route('/{id<\d+>}/delete', name: '_delete', methods: ['POST'])]
-    public function delete(Request $request, Vehicle $vehicle, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Vehicle $vehicle): Response
     {
-        if ($this->isCsrfTokenValid('app_admin_vehicles_delete'.$vehicle->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($vehicle);
-            $entityManager->flush();
-
-            $this->addFlash('notice', 'result.vehicle_deleted');
+        if ($vehicle->getOwner() !== $this->getUser()) {
+            throw $this->createNotFoundException();
         }
 
-        return $this->redirectToRoute('app_admin_vehicles_index', status: Response::HTTP_SEE_OTHER);
+        if ($this->isCsrfTokenValid('app_vehicles_delete'.$vehicle->getId(), $request->getPayload()->getString('_token'))) {
+            $this->entityManager->remove($vehicle);
+            $this->entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_vehicles_index', status: Response::HTTP_SEE_OTHER);
     }
 }
