@@ -1,0 +1,7 @@
+{% extends 'users/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.user_create'|trans }}</h1>
+
+    {{ include('users/_form.html.twig') }}
+{% endblock %}

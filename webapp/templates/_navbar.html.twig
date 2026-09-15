@@ -6,7 +6,7 @@
 
 <div class="bg-body-tertiary">
     <nav class="navbar navbar-expand container" {{ stimulus_controller('navbar', controller_classes: {'active': 'active'}) }}>
-        <a href="{% block navbar_index_url %}{# TODO: index url for home #}{% endblock %}" class="navbar-brand">ParkFlow</a>
+        <a href="{{ path('app_home_index') }}" class="navbar-brand">ParkFlow</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>
@@ -14,10 +14,9 @@
 
         <div id="navbar-content" class="navbar-collapse collapse">
             <ul class="navbar-nav">
-                {% block navbar_nav %}
-                    {{ _self.nav_item(path('app_profile_index'), 'bi-person', 'title.profile'|trans) }}
-                    {{ _self.nav_item(path('app_vehicles_index'), 'bi-car-front', 'title.vehicles'|trans) }}
-                {% endblock %}
+                {{ _self.nav_item(path('app_admin_users_index'), 'bi-person', 'title.users'|trans) }}
+                {{ _self.nav_item(path('app_admin_vehicles_index'), 'bi-car-front', 'title.vehicles'|trans) }}
+                {{ _self.nav_item(path('app_admin_records_index'), 'bi-p-square', 'title.records'|trans) }}
             </ul>
         </div>
 

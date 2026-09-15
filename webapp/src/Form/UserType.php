@@ -20,9 +20,6 @@ class UserType extends AbstractType
         /** @var bool */
         $edit = $options['edit'];
 
-        /** @var bool */
-        $admin = $options['admin'];
-
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
@@ -41,24 +38,20 @@ class UserType extends AbstractType
                 'label' => 'label.last_name',
                 'required' => false,
             ])
+            ->add('roles', ChoiceType::class, [
+                'label' => 'label.roles',
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => [
+                    User::ROLE_USER => User::ROLE_USER,
+                    User::ROLE_ADMIN => User::ROLE_ADMIN,
+                ],
+            ])
+            ->add('isActive', CheckboxType::class, [
+                'label' => 'label.is_active',
+                'required' => false,
+            ])
         ;
-        if ($admin) {
-            $builder
-                ->add('roles', ChoiceType::class, [
-                    'label' => 'label.roles',
-                    'multiple' => true,
-                    'expanded' => true,
-                    'choices' => [
-                        User::ROLE_USER => User::ROLE_USER,
-                        User::ROLE_ADMIN => User::ROLE_ADMIN,
-                    ],
-                ])
-                ->add('isActive', CheckboxType::class, [
-                    'label' => 'label.is_active',
-                    'required' => false,
-                ])
-            ;
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -67,7 +60,6 @@ class UserType extends AbstractType
             'data_class' => User::class,
         ]);
 
-        $resolver->setRequired(['edit'])->setAllowedTypes('edit', ['bool']);
-        $resolver->setRequired(['admin'])->setAllowedTypes('admin', ['bool']);
+        $resolver->setRequired('edit')->setAllowedTypes('edit', ['bool']);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -13,7 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/{_locale}/admin/users', name: 'app_admin_users')]
+#[Route('/{_locale}/users', name: 'app_users')]
 #[IsGranted(User::ROLE_ADMIN)]
 final class UserController extends AbstractController
 {
@@ -26,7 +26,7 @@ final class UserController extends AbstractController
     #[Route('', name: '_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
-        return $this->render('admin/users/index.html.twig', [
+        return $this->render('users/index.html.twig', [
             'users' => $this->userRepository->findBy(criteria: [], orderBy: ['createdAt' => 'DESC']),
         ]);
     }
@@ -34,7 +34,7 @@ final class UserController extends AbstractController
     #[Route('/{id<\d+>}', name: '_show', methods: ['GET'])]
     public function show(Request $request, User $user): Response
     {
-        return $this->render('admin/users/show.html.twig', [
+        return $this->render('users/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -45,7 +45,6 @@ final class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user, [
             'edit' => false,
-            'admin' => true,
         ]);
         $form->handleRequest($request);
 
@@ -58,10 +57,10 @@ final class UserController extends AbstractController
 
             $this->addFlash('notice', 'result.user_created');
 
-            return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_users_index', status: Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/users/create.html.twig', [
+        return $this->render('users/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -71,7 +70,6 @@ final class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user, [
             'edit' => true,
-            'admin' => true,
         ]);
         $form->handleRequest($request);
 
@@ -84,10 +82,10 @@ final class UserController extends AbstractController
 
             $this->addFlash('notice', 'result.user_edited');
 
-            return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_users_index', status: Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/users/edit.html.twig', [
+        return $this->render('users/edit.html.twig', [
             'form' => $form,
         ]);
     }
@@ -95,13 +93,13 @@ final class UserController extends AbstractController
     #[Route('/{id<\d+>}/delete', name: '_delete', methods: ['POST'])]
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('app_admin_users_delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('app_users_delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
             $this->entityManager->remove($user);
             $this->entityManager->flush();
 
             $this->addFlash('notice', 'result.user_deleted');
         }
 
-        return $this->redirectToRoute('app_admin_users_index', status: Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_users_index', status: Response::HTTP_SEE_OTHER);
     }
 }

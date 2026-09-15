@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\Record;
 use App\Entity\User;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/{_locale}/admin/records', name: 'app_admin_records')]
+#[Route('/{_locale}/records', name: 'app_records')]
 #[IsGranted(User::ROLE_ADMIN)]
 final class RecordController extends AbstractController
 {
@@ -25,7 +25,7 @@ final class RecordController extends AbstractController
     #[Route('', name: '_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
-        return $this->render('admin/records/index.html.twig', [
+        return $this->render('records/index.html.twig', [
             'records' => $this->recordRepository->findBy(criteria: [], orderBy: ['enteredAt' => 'DESC']),
         ]);
     }
@@ -33,7 +33,7 @@ final class RecordController extends AbstractController
     #[Route('/{id<\d+>}', name: '_show', methods: ['GET'])]
     public function show(Request $request, Record $record): Response
     {
-        return $this->render('admin/records/show.html.twig', [
+        return $this->render('records/show.html.twig', [
             'record' => $record,
         ]);
     }
@@ -49,10 +49,10 @@ final class RecordController extends AbstractController
 
             $this->addFlash('notice', 'result.record_edited');
 
-            return $this->redirectToRoute('app_admin_records_index', status: Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_records_index', status: Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/records/edit.html.twig', [
+        return $this->render('records/edit.html.twig', [
             'form' => $form,
         ]);
     }

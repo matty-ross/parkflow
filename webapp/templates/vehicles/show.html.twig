@@ -1,4 +1,4 @@
-{% extends 'admin/vehicles/index.html.twig' %}
+{% extends 'vehicles/index.html.twig' %}
 
 {% block main %}
     <h1>{{ 'title.vehicle'|trans }}</h1>
@@ -13,7 +13,7 @@
                 <tr>
                     <th>{{ 'label.owner'|trans }}</th>
                     <td>
-                        <a href="{{ path('app_admin_users_show', {'id': vehicle.owner.id}) }}">{{ vehicle.owner }}</a>
+                        <a href="{{ path('app_users_show', {'id': vehicle.owner.id}) }}">{{ vehicle.owner }}</a>
                     </td>
                 </tr>
                 <tr>
@@ -28,10 +28,10 @@
         </table>
     </div>
 
-    <a href="{{ path('app_admin_vehicles_edit', {'id': vehicle.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
+    <a href="{{ path('app_vehicles_edit', {'id': vehicle.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
 
-    <form method="post" action="{{ path('app_admin_vehicles_delete', {'id': vehicle.id}) }}" class="d-inline">
-        <input type="hidden" name="_token" value="{{ csrf_token('app_admin_vehicles_delete' ~ vehicle.id) }}">
+    <form method="post" action="{{ path('app_vehicles_delete', {'id': vehicle.id}) }}" class="d-inline">
+        <input type="hidden" name="_token" value="{{ csrf_token('app_vehicles_delete' ~ vehicle.id) }}">
         <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i>{{ 'action.delete'|trans }}</button>
     </form>
 {% endblock %}

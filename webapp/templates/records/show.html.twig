@@ -1,4 +1,4 @@
-{% extends 'admin/records/index.html.twig' %}
+{% extends 'records/index.html.twig' %}
 
 {% block main %}
     <h1>{{ 'title.record'|trans }}</h1>
@@ -14,7 +14,7 @@
                     <th>{{ 'label.recognized_user'|trans }}</th>
                     <td>
                         {% if record.recognizedUser %}
-                            <a href="{{ path('app_admin_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>
+                            <a href="{{ path('app_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -34,5 +34,5 @@
         </table>
     </div>
 
-    <a href="{{ path('app_admin_records_edit', {'id': record.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
+    <a href="{{ path('app_records_edit', {'id': record.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
 {% endblock %}

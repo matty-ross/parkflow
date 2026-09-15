@@ -1,4 +1,4 @@
-{% extends 'admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() ~ ' | ' ~ 'title.records'|trans }}{% endblock %}
 
@@ -22,13 +22,13 @@
                         <td>{{ record.licensePlate }}</td>
                         <td>
                             {% if record.recognizedUser %}
-                                <a href="{{ path('app_admin_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>
+                                <a href="{{ path('app_users_show', {'id': record.recognizedUser.id}) }}">{{ record.recognizedUser }}</a>
                             {% endif %}
                         </td>
                         <td>{{ record.enteredAt|date('Y-m-d H:i:s') }}</td>
                         <td>{{ record.exitedAt ? record.exitedAt|date('Y-m-d H:i:s') : null }}</td>
                         <td>
-                            <a href="{{ path('app_admin_records_show', {'id': record.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i>{{ 'action.show'|trans }}</a>
+                            <a href="{{ path('app_records_show', {'id': record.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i>{{ 'action.show'|trans }}</a>
                         </td>
                     </tr>
                 {% else %}
