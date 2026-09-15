@@ -6,7 +6,7 @@ use App\Entity\Record;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,15 +15,16 @@ class RecordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('licensePlate', TextType::class, [
+                'label' => 'label.license_plate',
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+            ])
             ->add('recognizedUser', EntityType::class, [
                 'label' => 'label.recognized_user',
                 'required' => false,
                 'class' => User::class,
-            ])
-            ->add('freeUntil', DateTimeType::class, [
-                'label' => 'label.free_until',
-                'widget' => 'single_text',
-                'with_seconds' => true,
             ])
         ;
     }

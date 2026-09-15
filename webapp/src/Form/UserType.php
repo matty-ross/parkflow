@@ -32,11 +32,9 @@ class UserType extends AbstractType
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'label.first_name',
-                'required' => false,
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'label.last_name',
-                'required' => false,
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'label.roles',

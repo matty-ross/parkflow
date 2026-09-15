@@ -37,10 +37,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
     private ?string $firstName = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[Assert\NotBlank]
     private ?string $lastName = null;
 
     /**
@@ -73,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString(): string
     {
-        return $this->getFirstName().' '.$this->getLastName().' ('.$this->getEmail().')';
+        return $this->getFirstName().' '.$this->getLastName();
     }
 
     /**

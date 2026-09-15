@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RecordRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecordRepository::class)]
 #[ORM\Table('records')]
@@ -16,6 +17,7 @@ class Record
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING, length: 20, index: true)]
+    #[Assert\NotBlank]
     private ?string $licensePlate = null;
 
     #[ORM\ManyToOne(inversedBy: 'records')]
@@ -32,9 +34,6 @@ class Record
 
     #[ORM\Column(type: Types::STRING, length: 36, unique: true, nullable: true)]
     private ?string $exitSnapshotUuid = null;
-
-    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE, index: true)]
-    private ?\DateTime $freeUntil = null;
 
     public function getId(): ?int
     {
@@ -109,18 +108,6 @@ class Record
     public function setExitSnapshotUuid(?string $exitSnapshotUuid): static
     {
         $this->exitSnapshotUuid = $exitSnapshotUuid;
-
-        return $this;
-    }
-
-    public function getFreeUntil(): ?\DateTime
-    {
-        return $this->freeUntil;
-    }
-
-    public function setFreeUntil(?\DateTime $freeUntil): static
-    {
-        $this->freeUntil = $freeUntil;
 
         return $this;
     }

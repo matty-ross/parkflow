@@ -24,6 +24,7 @@ class Vehicle
 
     #[ORM\ManyToOne(inversedBy: 'vehicles')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private ?User $owner = null;
 
     #[ORM\Column(type: Types::STRING, length: 20, unique: true)]
