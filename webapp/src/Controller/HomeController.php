@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/{_locale}', name: 'app_home')]
+#[Route('/{_locale?%kernel.default_locale%}', name: 'app_home')]
 #[IsGranted(User::ROLE_ADMIN)]
 final class HomeController extends AbstractController
 {
