@@ -5,29 +5,20 @@ action.login: 'Prihlásiť sa'
 action.logout: 'Odhlásiť sa'
 action.show: Zobraziť
 action.submit: Odoslať
-label.amount_excluding_vat: 'Suma bez DPH'
-label.amount_including_vat: 'Suma s DPH'
 label.created_at: Vytvorený
-label.currency: Mena
 label.description: Popis
 label.email: Email
 label.entered_at: Vstúpil
 label.exited_at: Vystúpil
 label.first_name: Meno
-label.free_until: 'Zadarmo do'
 label.full_name: 'Celé meno'
 label.is_active: Aktívny
 label.last_name: Priezvisko
 label.license_plate: EČV
-label.locale: Jazyk
-label.new_record_free_until: 'Nový záznam zadarmo do'
-label.old_record_free_until: 'Starý záznam zadarmo do'
 label.owner: Vlastník
-label.paid_at: Zaplatené
 label.password: Heslo
 label.recognized_user: 'Rozpoznaný používateľ'
 label.roles: Role
-label.vat_rate: 'Sadzba DPH'
 result.no_results: 'Žiadne výsledky'
 result.record_edited: 'Záznam upravený'
 result.user_created: 'Používateľ vytvorený'
@@ -37,10 +28,6 @@ result.vehicle_created: 'Vozidlo vytvorené'
 result.vehicle_deleted: 'Vozidlo vymazané'
 result.vehicle_edited: 'Vozidlo upravené'
 title.login: 'Prihlásiť sa'
-title.payment: Platba
-title.payments: Platby
-title.profile: Profil
-title.profile_edit: 'Upraviť profil'
 title.record: Záznam
 title.record_edit: 'Upraviť záznam'
 title.records: Záznamy
