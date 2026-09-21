@@ -62,15 +62,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $vehicles;
 
     /**
-     * @var Collection<int, Record>
+     * @var Collection<int, Event>
      */
-    #[ORM\OneToMany(targetEntity: Record::class, mappedBy: 'recognizedUser')]
-    private Collection $records;
+    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'recognizedUser')]
+    private Collection $events;
 
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
-        $this->records = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -223,29 +223,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Record>
+     * @return Collection<int, Event>
      */
-    public function getRecords(): Collection
+    public function getEvents(): Collection
     {
-        return $this->records;
+        return $this->events;
     }
 
-    public function addRecord(Record $record): static
+    public function addEvent(Event $event): static
     {
-        if (!$this->records->contains($record)) {
-            $this->records->add($record);
-            $record->setRecognizedUser($this);
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->setRecognizedUser($this);
         }
 
         return $this;
     }
 
-    public function removeRecord(Record $record): static
+    public function removeEvent(Event $event): static
     {
-        if ($this->records->removeElement($record)) {
+        if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($record->getRecognizedUser() === $this) {
-                $record->setRecognizedUser(null);
+            if ($event->getRecognizedUser() === $this) {
+                $event->setRecognizedUser(null);
             }
         }
 

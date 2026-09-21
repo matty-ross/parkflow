@@ -41,8 +41,8 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => [
-                    User::ROLE_USER => User::ROLE_USER,
-                    User::ROLE_ADMIN => User::ROLE_ADMIN,
+                    'label.role_user' => User::ROLE_USER,
+                    'label.role_admin' => User::ROLE_ADMIN,
                 ],
             ])
             ->add('isActive', CheckboxType::class, [

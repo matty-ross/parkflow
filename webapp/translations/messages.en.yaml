@@ -5,11 +5,12 @@ action.login: Login
 action.logout: Logout
 action.show: Show
 action.submit: Submit
+label.action: Action
+label.action_entry: Entry
+label.action_exit: Exit
 label.created_at: 'Created at'
 label.description: Description
 label.email: Email
-label.entered_at: 'Entered at'
-label.exited_at: 'Exited at'
 label.first_name: 'First name'
 label.full_name: 'Full name'
 label.is_active: Active
@@ -18,19 +19,21 @@ label.license_plate: 'License plate'
 label.owner: Owner
 label.password: Password
 label.recognized_user: 'Recognized user'
+label.role_user: User
+label.role_admin: Admin
 label.roles: Roles
+result.event_edited: 'Event edited'
 result.no_results: 'No results'
-result.record_edited: 'Record edited'
 result.user_created: 'User created'
 result.user_deleted: 'User deleted'
 result.user_edited: 'User edited'
 result.vehicle_created: 'Vehicle created'
 result.vehicle_deleted: 'Vehicle deleted'
 result.vehicle_edited: 'Vehicle edited'
+title.event: Event
+title.event_edit: 'Edit event'
+title.events: Events
 title.login: Login
-title.record: Record
-title.record_edit: 'Edit record'
-title.records: Records
 title.user: User
 title.user_create: 'Create user'
 title.user_edit: 'Edit user'

@@ -5,11 +5,12 @@ action.login: 'Prihlásiť sa'
 action.logout: 'Odhlásiť sa'
 action.show: Zobraziť
 action.submit: Odoslať
+label.action: Akcia
+label.action_entry: Vstup
+label.action_exit: Výstup
 label.created_at: Vytvorený
 label.description: Popis
 label.email: Email
-label.entered_at: Vstúpil
-label.exited_at: Vystúpil
 label.first_name: Meno
 label.full_name: 'Celé meno'
 label.is_active: Aktívny
@@ -18,19 +19,21 @@ label.license_plate: EČV
 label.owner: Vlastník
 label.password: Heslo
 label.recognized_user: 'Rozpoznaný používateľ'
+label.role_user: Používateľ
+label.role_admin: Admin
 label.roles: Role
+result.event_edited: 'Udalosť upravená'
 result.no_results: 'Žiadne výsledky'
-result.record_edited: 'Záznam upravený'
 result.user_created: 'Používateľ vytvorený'
 result.user_deleted: 'Používateľ vymazaný'
 result.user_edited: 'Používateľ upravený'
 result.vehicle_created: 'Vozidlo vytvorené'
 result.vehicle_deleted: 'Vozidlo vymazané'
 result.vehicle_edited: 'Vozidlo upravené'
+title.event: Udalosť
+title.event_edit: 'Upraviť udalost'
+title.events: Udalosti
 title.login: 'Prihlásiť sa'
-title.record: Záznam
-title.record_edit: 'Upraviť záznam'
-title.records: Záznamy
 title.user: Používateľ
 title.user_create: 'Vytvoriť používateľa'
 title.user_edit: 'Upraviť používateľa'

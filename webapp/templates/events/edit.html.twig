@@ -1,0 +1,7 @@
+{% extends 'events/index.html.twig' %}
+
+{% block main %}
+    <h1>{{ 'title.event_edit'|trans }}</h1>
+
+    {{ include('events/_form.html.twig') }}
+{% endblock %}

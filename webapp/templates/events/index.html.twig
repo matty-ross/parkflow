@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() ~ ' | ' ~ 'title.events'|trans }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'title.events'|trans }}</h1>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>{{ 'label.action'|trans }}</th>
+                    <th>{{ 'label.license_plate'|trans }}</th>
+                    <th>{{ 'label.recognized_user'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>
+                            <span class="badge text-bg-secondary">{{ ('label.' ~ event.action|lower)|trans }}</span>
+                        </td>
+                        <td>{{ event.licensePlate }}</td>
+                        <td>
+                            {% if event.recognizedUser %}
+                                <a href="{{ path('app_users_show', {'id': event.recognizedUser.id}) }}">{{ event.recognizedUser }}</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_events_show', {'id': event.id}) }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i>{{ 'action.show'|trans }}</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">{{ 'result.no_results'|trans }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

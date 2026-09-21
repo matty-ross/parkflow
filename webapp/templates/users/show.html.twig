@@ -26,7 +26,7 @@
                     <th>{{ 'label.roles'|trans }}</th>
                     <td>
                         {% for role in user.roles ?? [] %}
-                            <span class="badge text-bg-secondary">{{ role }}</span>
+                            <span class="badge text-bg-secondary">{{ ('label.' ~ role|lower)|trans }}</span>
                         {% endfor %}
                     </td>
                 </tr>
