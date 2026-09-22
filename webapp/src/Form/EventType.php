@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Event;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,10 +27,9 @@ class EventType extends AbstractType
                     'maxlength' => 20,
                 ],
             ])
-            ->add('recognizedUser', EntityType::class, [
+            ->add('recognizedUser', UserAutocompleteField::class, [
                 'label' => 'label.recognized_user',
                 'required' => false,
-                'class' => User::class,
             ])
         ;
     }
