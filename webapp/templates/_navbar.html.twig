@@ -1,11 +1,11 @@
-{% macro nav_item(url, icon, title) %}
+{% macro nav_item(url, base_route_prefix, icon, title) %}
     <li class="nav-item">
-        <a href="{{ url }}" class="nav-link" {{ stimulus_target('navbar', 'navLink') }}><i class="bi {{ icon }}"></i>{{ title }}</a>
+        <a href="{{ url }}" class="nav-link {% if app.current_route starts with base_route_prefix %}active{% endif %}"><i class="bi {{ icon }}"></i>{{ title }}</a>
     </li>
 {% endmacro %}
 
 <div class="bg-body-tertiary">
-    <nav class="navbar navbar-expand container" {{ stimulus_controller('navbar', controller_classes: {'active': 'active'}) }}>
+    <nav class="navbar navbar-expand container">
         <a href="{{ path('app_home_index') }}" class="navbar-brand">ParkFlow</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
@@ -14,9 +14,9 @@
 
         <div id="navbar-content" class="navbar-collapse collapse">
             <ul class="navbar-nav">
-                {{ _self.nav_item(path('app_users_index'), 'bi-person', 'title.users'|trans) }}
-                {{ _self.nav_item(path('app_vehicles_index'), 'bi-car-front', 'title.vehicles'|trans) }}
-                {{ _self.nav_item(path('app_events_index'), 'bi-p-square', 'title.events'|trans) }}
+                {{ _self.nav_item(path('app_users_index'), 'app_users', 'bi-person', 'title.users'|trans) }}
+                {{ _self.nav_item(path('app_vehicles_index'), 'app_vehicles', 'bi-car-front', 'title.vehicles'|trans) }}
+                {{ _self.nav_item(path('app_events_index'), 'app_events', 'bi-arrow-down-up', 'title.events'|trans) }}
             </ul>
         </div>
 
