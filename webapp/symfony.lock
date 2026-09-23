@@ -47,6 +47,18 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "pentiminax/ux-datatables": {
+        "version": "0.90",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.43",
+            "ref": "5aab256ed30f8daa80b87aa5fef2ca7f74670f27"
+        },
+        "files": [
+            "config/routes/data_tables.yaml"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "13.3",
         "recipe": {

@@ -1483,6 +1483,35 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     generate_final_classes?: bool|Param, // Default: true
  *     generate_final_entities?: bool|Param, // Default: false
  * }
+ * @psalm-type DataTablesConfig = array{
+ *     options?: array{
+ *         language?: scalar|Param|null, // Default: "en-GB"
+ *         layout?: mixed, // Default: {"topStart":"pageLength","topEnd":"search","bottomStart":"info","bottomEnd":"paging"}
+ *         lengthMenu?: list<scalar|Param|null>,
+ *         pageLength?: int|Param,
+ *         paging?: array{
+ *             boundaryNumbers?: bool|Param, // Default: true
+ *             buttons?: int|Param, // Default: 7
+ *             firstLast?: bool|Param, // Default: true
+ *             numbers?: bool|Param, // Default: true
+ *             previousNext?: bool|Param, // Default: true
+ *         },
+ *     },
+ *     template_parameters?: array{
+ *         class?: scalar|Param|null, // Default: "table"
+ *     },
+ *     extensions?: array{
+ *         buttons?: list<scalar|Param|null>,
+ *         select?: array{
+ *             style?: scalar|Param|null, // Default: "single"
+ *         },
+ *     },
+ *     edit_modal?: array{
+ *         template?: scalar|Param|null, // Default: "@DataTables/modal/datatables/edit_modal.html.twig"
+ *         body_template?: scalar|Param|null, // Default: "@DataTables/modal/datatables/_form_body.html.twig"
+ *         default_title?: scalar|Param|null, // Default: "Edit"
+ *     },
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -1496,6 +1525,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     twig_extra?: TwigExtraConfig,
  *     security?: SecurityConfig,
  *     monolog?: MonologConfig,
+ *     data_tables?: DataTablesConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -1512,6 +1542,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
  *         maker?: MakerConfig,
+ *         data_tables?: DataTablesConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -1526,6 +1557,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
+ *         data_tables?: DataTablesConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -1541,6 +1573,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
+ *         data_tables?: DataTablesConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,
