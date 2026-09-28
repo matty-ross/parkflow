@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\DataTables\UsersDataTable;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +20,19 @@ final class UserController extends AbstractController
     public function __construct(
         private EntityManagerInterface $entityManager,
         private UserPasswordHasherInterface $passwordHasher,
-        private UserRepository $userRepository,
     ) {}
 
     #[Route('', name: '_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(Request $request, UsersDataTable $table): Response
     {
+        $table->handleRequest($request);
+
+        if ($table->isRequestHandled()) {
+            return $table->getResponse();
+        }
+
         return $this->render('users/index.html.twig', [
-            'users' => $this->userRepository->findBy(criteria: [], orderBy: ['createdAt' => 'DESC']),
+            'table' => $table,
         ]);
     }
 

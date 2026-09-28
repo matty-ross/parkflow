@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\DataTables\VehiclesDataTable;
 use App\Entity\User;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
-use App\Repository\VehicleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,14 +19,19 @@ final class VehicleController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private VehicleRepository $vehicleRepository,
     ) {}
 
     #[Route('', name: '_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(Request $request, VehiclesDataTable $table): Response
     {
+        $table->handleRequest($request);
+
+        if ($table->isRequestHandled()) {
+            return $table->getResponse();
+        }
+
         return $this->render('vehicles/index.html.twig', [
-            'vehicles' => $this->vehicleRepository->findBy(criteria: [], orderBy: ['createdAt' => 'DESC']),
+            'table' => $table,
         ]);
     }
 

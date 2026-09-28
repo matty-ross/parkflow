@@ -12,9 +12,7 @@
                 </tr>
                 <tr>
                     <th>{{ 'label.action'|trans }}</th>
-                    <td>
-                        <span class="badge text-bg-secondary">{{ ('label.' ~ event.action|lower)|trans }}</span>
-                    </td>
+                    <td>{% include 'events/_action_badge.html.twig' with {'data': event.action} %}</td>
                 </tr>
                 <tr>
                     <th>{{ 'label.license_plate'|trans }}</th>

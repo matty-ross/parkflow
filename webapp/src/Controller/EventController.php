@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\DataTables\EventsDataTable;
 use App\Entity\Event;
 use App\Entity\User;
 use App\Form\EventType;
-use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,14 +19,19 @@ final class EventController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private EventRepository $eventRepository,
     ) {}
 
     #[Route('', name: '_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(Request $request, EventsDataTable $table): Response
     {
+        $table->handleRequest($request);
+
+        if ($table->isRequestHandled()) {
+            return $table->getResponse();
+        }
+
         return $this->render('events/index.html.twig', [
-            'events' => $this->eventRepository->findBy(criteria: [], orderBy: ['createdAt' => 'DESC']),
+            'table' => $table,
         ]);
     }
 

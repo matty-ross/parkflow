@@ -1,0 +1,3 @@
+{% for role in data %}
+    <span class="badge text-bg-secondary">{{ ('label.' ~ role|lower)|trans }}</span>
+{% endfor %}

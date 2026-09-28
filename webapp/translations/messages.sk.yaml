@@ -11,6 +11,7 @@ label.action_exit: Výstup
 label.created_at: Vytvorený
 label.description: Popis
 label.email: Email
+label.empty_label: ''
 label.first_name: Meno
 label.full_name: 'Celé meno'
 label.is_active: Aktívny
