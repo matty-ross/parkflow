@@ -60,12 +60,12 @@
         ]
     },
     "pentiminax/ux-datatables": {
-        "version": "0.90",
+        "version": "1.1",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "0.43",
-            "ref": "5aab256ed30f8daa80b87aa5fef2ca7f74670f27"
+            "version": "1.0",
+            "ref": "05736fb9e84ed51c60ad7fd51614ecac22162dcf"
         },
         "files": [
             "config/routes/data_tables.yaml"

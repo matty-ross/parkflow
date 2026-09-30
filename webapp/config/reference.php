@@ -1484,8 +1484,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     generate_final_entities?: bool|Param, // Default: false
  * }
  * @psalm-type DataTablesConfig = array{
+ *     max_page_length?: int|Param, // Upper bound applied to the DataTables "length" parameter on Ajax requests. "length=-1" (show all) is honored only when the table declares -1 in lengthMenu(); otherwise it is capped to this value. // Default: 1000
  *     options?: array{
  *         language?: scalar|Param|null, // Default: "en-GB"
+ *         stateSave?: bool|Param,
+ *         showHeaderResetButton?: bool|Param,
  *         layout?: mixed, // Default: {"topStart":"pageLength","topEnd":"search","bottomStart":"info","bottomEnd":"paging"}
  *         lengthMenu?: list<scalar|Param|null>,
  *         pageLength?: int|Param,
@@ -1497,7 +1500,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             previousNext?: bool|Param, // Default: true
  *         },
  *     },
- *     template_parameters?: array{
+ *     table_attributes?: array{
  *         class?: scalar|Param|null, // Default: "table"
  *     },
  *     extensions?: array{
@@ -1507,8 +1510,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *     },
  *     edit_modal?: array{
- *         template?: scalar|Param|null, // Default: "@DataTables/modal/datatables/edit_modal.html.twig"
- *         body_template?: scalar|Param|null, // Default: "@DataTables/modal/datatables/_form_body.html.twig"
+ *         template?: scalar|Param|null, // Default: "@PentiminaxDataTables/modal/datatables/edit_modal.html.twig"
+ *         body_template?: scalar|Param|null, // Default: "@PentiminaxDataTables/modal/datatables/_form_body.html.twig"
  *         default_title?: scalar|Param|null, // Default: "Edit"
  *     },
  * }

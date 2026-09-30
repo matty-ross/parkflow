@@ -1,2 +1,2 @@
 datatables:
-    resource: '@DataTablesBundle/config/routes.php'
+    resource: '@PentiminaxDataTablesBundle/config/routes.php'

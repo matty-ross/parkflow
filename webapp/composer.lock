@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6dad6f7868cda42ee7535dd1af8a7f4",
+    "content-hash": "22a359baed55183e63543e9af38dafa1",
     "packages": [
         {
             "name": "composer/semver",
@@ -1373,22 +1373,23 @@
         },
         {
             "name": "pentiminax/ux-datatables",
-            "version": "v0.90.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pentiminax/ux-datatables.git",
-                "reference": "55956dc7ae6bfe8fdbc806c6de280da7cdaaa67b"
+                "reference": "177d423c8722b7022266efecf8f4f7ad34dc0b2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pentiminax/ux-datatables/zipball/55956dc7ae6bfe8fdbc806c6de280da7cdaaa67b",
-                "reference": "55956dc7ae6bfe8fdbc806c6de280da7cdaaa67b",
+                "url": "https://api.github.com/repos/pentiminax/ux-datatables/zipball/177d423c8722b7022266efecf8f4f7ad34dc0b2b",
+                "reference": "177d423c8722b7022266efecf8f4f7ad34dc0b2b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.3",
                 "symfony/config": "^7.0 || ^8.0",
                 "symfony/dependency-injection": "^7.0 || ^8.0",
+                "symfony/deprecation-contracts": "^2.5 || ^3.0",
                 "symfony/http-kernel": "^7.0 || ^8.0",
                 "symfony/property-access": "^7.0 || ^8.0",
                 "symfony/security-bundle": "^7.0 || ^8.0",
@@ -1399,11 +1400,14 @@
                 "symfony/flex": "<1.13"
             },
             "require-dev": {
-                "api-platform/core": "^3.0 || ^4.0",
+                "api-platform/core": "^3.0 || ^4.0 || ^5.0",
                 "doctrine/orm": "^3.0",
                 "friendsofphp/php-cs-fixer": "^3.95",
                 "openspout/openspout": "^4.0",
-                "phpunit/phpunit": "^11.5",
+                "phpunit/phpunit": "^12.0",
+                "symfony/browser-kit": "^7.0 || ^8.0",
+                "symfony/css-selector": "^7.0 || ^8.0",
+                "symfony/dom-crawler": "^7.0 || ^8.0",
                 "symfony/expression-language": "^7.0 || ^8.0",
                 "symfony/form": "^7.0 || ^8.0",
                 "symfony/framework-bundle": "^7.0 || ^8.0",
@@ -1419,6 +1423,9 @@
             "suggest": {
                 "api-platform/core": "To auto-detect columns from API Platform metadata.",
                 "openspout/openspout": "To enable server-side CSV and XLSX export via Button::csv(serverSide: true) and Button::excel(serverSide: true).",
+                "symfony/browser-kit": "To test your tables with Pentiminax\\UX\\DataTables\\Test\\DataTableTestCase.",
+                "symfony/css-selector": "To let DataTableTestCase::dataTableView() locate a rendered table in the page.",
+                "symfony/dom-crawler": "To assert on client-side tables with DataTableTestCase::dataTableView().",
                 "symfony/expression-language": "To use Symfony Expression objects with setPermission().",
                 "symfony/form": "To enable inline edit modal with auto-generated forms.",
                 "symfony/maker-bundle": "To use the make:datatable command.",
@@ -1456,9 +1463,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pentiminax/ux-datatables/issues",
-                "source": "https://github.com/pentiminax/ux-datatables/tree/v0.90.0"
+                "source": "https://github.com/pentiminax/ux-datatables/tree/v1.1.0"
             },
-            "time": "2026-09-11T17:29:05+00:00"
+            "time": "2026-09-26T19:15:42+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
