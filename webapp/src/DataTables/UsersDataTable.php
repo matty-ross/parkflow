@@ -3,9 +3,11 @@
 namespace App\DataTables;
 
 use App\Entity\User;
+use Doctrine\ORM\QueryBuilder;
 use Pentiminax\UX\DataTables\Attribute\AsDataTable;
 use Pentiminax\UX\DataTables\Column\TemplateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
+use Pentiminax\UX\DataTables\DataTableRequest\DataTableRequest;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
 use Pentiminax\UX\DataTables\Model\Action;
 use Pentiminax\UX\DataTables\Model\Actions;
@@ -32,6 +34,7 @@ final class UsersDataTable extends AbstractDataTable
         return $table
             ->serverSide()
             ->processing()
+            ->order([])
         ;
     }
 
@@ -46,5 +49,14 @@ final class UsersDataTable extends AbstractDataTable
                     ->linkToRoute('app_users_show', fn (User $user) => ['id' => $user->getId()])
             )
         ;
+    }
+
+    protected function customizeQueryBuilder(QueryBuilder $qb, DataTableRequest $request): QueryBuilder
+    {
+        if (!$request->order) {
+            $qb->addOrderBy('e.createdAt', 'DESC');
+        }
+
+        return $qb;
     }
 }

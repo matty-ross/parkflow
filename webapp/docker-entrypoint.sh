@@ -15,6 +15,7 @@ if [ "$IS_DEV" = false ]; then
     php bin/console asset-map:compile --no-interaction
 fi
 
+php bin/console doctrine:database:create --if-not-exists --no-interaction
 php bin/console doctrine:migrations:migrate --no-interaction
 
 exec docker-php-entrypoint "$@"
