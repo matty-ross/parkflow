@@ -19,8 +19,8 @@ class Vehicle
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE, index: true)]
-    private ?\DateTime $createdAt = null;
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, index: true)]
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'vehicles')]
     #[ORM\JoinColumn(nullable: false)]
@@ -38,7 +38,7 @@ class Vehicle
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
     }
 
     public function getId(): ?int
@@ -46,7 +46,7 @@ class Vehicle
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
