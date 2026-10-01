@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Entity\Vehicle;
 use Pentiminax\UX\DataTables\Attribute\AsDataTable;
+use Pentiminax\UX\DataTables\Column\DateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
 use Pentiminax\UX\DataTables\Column\UrlColumn;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
@@ -11,16 +12,22 @@ use Pentiminax\UX\DataTables\Model\Action;
 use Pentiminax\UX\DataTables\Model\Actions;
 use Pentiminax\UX\DataTables\Model\DataTable;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[AsDataTable(Vehicle::class)]
 final class VehiclesDataTable extends AbstractDataTable
 {
     public function __construct(
         private RouterInterface $router,
+        private TranslatorInterface $translator,
     ) {}
 
     public function configureColumns(): iterable
     {
+        yield DateColumn::new('createdAt', 'label.created_at')
+            ->setFormat('Y-m-d H:i:s')
+        ;
+
         yield UrlColumn::new('owner', 'label.owner')
             ->linkToUrl(fn (Vehicle $vehicle) => $this->router->generate('app_users_show', ['id' => $vehicle->getOwner()->getId()]))
         ;
@@ -33,6 +40,10 @@ final class VehiclesDataTable extends AbstractDataTable
         return $table
             ->serverSide()
             ->processing()
+            ->autoWidth(false)
+            ->order([
+                [0, 'desc'],
+            ])
         ;
     }
 
@@ -41,7 +52,8 @@ final class VehiclesDataTable extends AbstractDataTable
         return $actions
             ->setColumnLabel('label.empty_label')
             ->add(
-                Action::detail('action.show')
+                Action::detail()
+                    ->label($this->translator->trans('action.show'))
                     ->setClassName('btn btn-sm btn-outline-primary')
                     ->icon('bi bi-eye')
                     ->linkToRoute('app_vehicles_show', fn (Vehicle $vehicle) => ['id' => $vehicle->getId()])

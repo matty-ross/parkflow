@@ -3,21 +3,29 @@
 namespace App\DataTables;
 
 use App\Entity\User;
-use Doctrine\ORM\QueryBuilder;
 use Pentiminax\UX\DataTables\Attribute\AsDataTable;
+use Pentiminax\UX\DataTables\Column\DateColumn;
 use Pentiminax\UX\DataTables\Column\TemplateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
-use Pentiminax\UX\DataTables\DataTableRequest\DataTableRequest;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
 use Pentiminax\UX\DataTables\Model\Action;
 use Pentiminax\UX\DataTables\Model\Actions;
 use Pentiminax\UX\DataTables\Model\DataTable;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[AsDataTable(User::class)]
 final class UsersDataTable extends AbstractDataTable
 {
+    public function __construct(
+        private TranslatorInterface $translator,
+    ) {}
+
     public function configureColumns(): iterable
     {
+        yield DateColumn::new('createdAt', 'label.created_at')
+            ->setFormat('Y-m-d H:i:s')
+        ;
+
         yield TextColumn::new('email', 'label.email');
 
         yield TextColumn::new('firstName', 'label.first_name');
@@ -34,7 +42,10 @@ final class UsersDataTable extends AbstractDataTable
         return $table
             ->serverSide()
             ->processing()
-            ->order([])
+            ->autoWidth(false)
+            ->order([
+                [0, 'desc'],
+            ])
         ;
     }
 
@@ -43,20 +54,12 @@ final class UsersDataTable extends AbstractDataTable
         return $actions
             ->setColumnLabel('label.empty_label')
             ->add(
-                Action::detail('action.show')
+                Action::detail()
+                    ->label($this->translator->trans('action.show'))
                     ->setClassName('btn btn-sm btn-outline-primary')
                     ->icon('bi bi-eye')
                     ->linkToRoute('app_users_show', fn (User $user) => ['id' => $user->getId()])
             )
         ;
-    }
-
-    protected function customizeQueryBuilder(QueryBuilder $qb, DataTableRequest $request): QueryBuilder
-    {
-        if (!$request->order) {
-            $qb->addOrderBy('e.createdAt', 'DESC');
-        }
-
-        return $qb;
     }
 }
