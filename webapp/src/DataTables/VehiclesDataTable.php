@@ -3,14 +3,19 @@
 namespace App\DataTables;
 
 use App\Entity\Vehicle;
+use Doctrine\ORM\QueryBuilder;
 use Pentiminax\UX\DataTables\Attribute\AsDataTable;
 use Pentiminax\UX\DataTables\Column\DateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
 use Pentiminax\UX\DataTables\Column\UrlColumn;
+use Pentiminax\UX\DataTables\Filter\DateRangeFilter;
+use Pentiminax\UX\DataTables\Filter\TextFilter;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
 use Pentiminax\UX\DataTables\Model\Action;
 use Pentiminax\UX\DataTables\Model\Actions;
 use Pentiminax\UX\DataTables\Model\DataTable;
+use Pentiminax\UX\DataTables\Model\Filters;
+use Pentiminax\UX\DataTables\Query\LikeValueEscaper;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -57,6 +62,33 @@ final class VehiclesDataTable extends AbstractDataTable
                     ->setClassName('btn btn-sm btn-outline-primary')
                     ->icon('bi bi-eye')
                     ->linkToRoute('app_vehicles_show', fn (Vehicle $vehicle) => ['id' => $vehicle->getId()])
+            )
+        ;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(
+                DateRangeFilter::new('createdAt')
+                    ->label('label.created_at')
+            )
+            ->add(
+                TextFilter::new('owner')
+                    ->label('label.owner')
+                    ->query(function (QueryBuilder $qb, mixed $value, string $alias) {
+                        if ($value = trim($value)) {
+                            $qb
+                                ->leftJoin("$alias.owner", 'owner')
+                                ->andWhere("LOWER(CONCAT(owner.firstName, ' ', owner.lastName)) LIKE :ownerFullName")
+                                ->setParameter('ownerFullName', '%'.LikeValueEscaper::escape(mb_strtolower($value)).'%')
+                            ;
+                        }
+                    })
+            )
+            ->add(
+                TextFilter::new('licensePlate')
+                    ->label('label.license_plate')
             )
         ;
     }
