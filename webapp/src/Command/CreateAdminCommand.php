@@ -30,8 +30,7 @@ class CreateAdminCommand extends Command
         $this
             ->addArgument('email', InputArgument::REQUIRED, 'Email')
             ->addArgument('password', InputArgument::REQUIRED, 'Password')
-            ->addArgument('first-name', InputArgument::REQUIRED, 'First name')
-            ->addArgument('last-name', InputArgument::REQUIRED, 'Last name')
+            ->addArgument('full-name', InputArgument::REQUIRED, 'Full name')
         ;
     }
 
@@ -41,13 +40,11 @@ class CreateAdminCommand extends Command
 
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
-        $firstName = $input->getArgument('first-name');
-        $lastName = $input->getArgument('last-name');
+        $fullName = $input->getArgument('full-name');
 
         $admin = new User()
             ->setEmail($email)
-            ->setFirstName($firstName)
-            ->setLastName($lastName)
+            ->setFullName($fullName)
             ->setRoles([User::ROLE_USER, User::ROLE_ADMIN])
         ;
         $admin->setPassword($this->passwordHasher->hashPassword($admin, $password));

@@ -8,6 +8,7 @@ use Pentiminax\UX\DataTables\Attribute\AsDataTable;
 use Pentiminax\UX\DataTables\Column\DateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
 use Pentiminax\UX\DataTables\Column\UrlColumn;
+use Pentiminax\UX\DataTables\DataTableRequest\DataTableRequest;
 use Pentiminax\UX\DataTables\Filter\DateRangeFilter;
 use Pentiminax\UX\DataTables\Filter\TextFilter;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
@@ -15,7 +16,6 @@ use Pentiminax\UX\DataTables\Model\Action;
 use Pentiminax\UX\DataTables\Model\Actions;
 use Pentiminax\UX\DataTables\Model\DataTable;
 use Pentiminax\UX\DataTables\Model\Filters;
-use Pentiminax\UX\DataTables\Query\LikeValueEscaper;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -34,6 +34,7 @@ final class VehiclesDataTable extends AbstractDataTable
         ;
 
         yield UrlColumn::new('owner', 'label.owner')
+            ->setField('owner.fullName')
             ->linkToUrl(fn (Vehicle $vehicle) => $this->router->generate('app_users_show', ['id' => $vehicle->getOwner()->getId()]))
         ;
 
@@ -74,22 +75,23 @@ final class VehiclesDataTable extends AbstractDataTable
                     ->label('label.created_at')
             )
             ->add(
-                TextFilter::new('owner')
+                TextFilter::new('owner.fullName')
                     ->label('label.owner')
-                    ->query(function (QueryBuilder $qb, mixed $value, string $alias) {
-                        if ($value = trim($value)) {
-                            $qb
-                                ->leftJoin("$alias.owner", 'owner')
-                                ->andWhere("LOWER(CONCAT(owner.firstName, ' ', owner.lastName)) LIKE :ownerFullName")
-                                ->setParameter('ownerFullName', '%'.LikeValueEscaper::escape(mb_strtolower($value)).'%')
-                            ;
-                        }
-                    })
             )
             ->add(
                 TextFilter::new('licensePlate')
                     ->label('label.license_plate')
             )
         ;
+    }
+
+    protected function customizeQueryBuilder(QueryBuilder $qb, DataTableRequest $request): QueryBuilder
+    {
+        $qb
+            ->leftJoin('e.owner', 'owner')
+            ->addSelect('owner')
+        ;
+
+        return $qb;
     }
 }

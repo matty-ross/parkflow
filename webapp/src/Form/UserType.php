@@ -30,11 +30,8 @@ class UserType extends AbstractType
                 'mapped' => false,
                 'constraints' => $edit ? [] : [new Assert\NotBlank()],
             ])
-            ->add('firstName', TextType::class, [
-                'label' => 'label.first_name',
-            ])
-            ->add('lastName', TextType::class, [
-                'label' => 'label.last_name',
+            ->add('fullName', TextType::class, [
+                'label' => 'label.full_name',
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'label.roles',

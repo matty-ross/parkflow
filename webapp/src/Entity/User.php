@@ -39,11 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::STRING, length: 255, index: true)]
     #[Assert\NotBlank]
-    private ?string $firstName = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255, index: true)]
-    #[Assert\NotBlank]
-    private ?string $lastName = null;
+    private ?string $fullName = null;
 
     /**
      * @var string[]
@@ -71,11 +67,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->vehicles = new ArrayCollection();
         $this->events = new ArrayCollection();
-    }
-
-    public function __toString(): string
-    {
-        return $this->getFirstName().' '.$this->getLastName();
     }
 
     /**
@@ -134,26 +125,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFullName(): ?string
     {
-        return $this->firstName;
+        return $this->fullName;
     }
 
-    public function setFirstName(?string $firstName): static
+    public function setFullName(?string $fullName): static
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(?string $lastName): static
-    {
-        $this->lastName = $lastName;
+        $this->fullName = $fullName;
 
         return $this;
     }

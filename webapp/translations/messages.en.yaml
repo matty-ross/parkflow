@@ -12,10 +12,8 @@ label.created_at: 'Created at'
 label.description: Description
 label.email: Email
 label.empty_label: ''
-label.first_name: 'First name'
 label.full_name: 'Full name'
 label.is_active: Active
-label.last_name: 'Last name'
 label.license_plate: 'License plate'
 label.owner: Owner
 label.password: Password

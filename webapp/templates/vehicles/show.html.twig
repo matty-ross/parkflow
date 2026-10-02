@@ -13,7 +13,7 @@
                 <tr>
                     <th>{{ 'label.owner'|trans }}</th>
                     <td>
-                        <a href="{{ path('app_users_show', {'id': vehicle.owner.id}) }}">{{ vehicle.owner }}</a>
+                        <a href="{{ path('app_users_show', {'id': vehicle.owner.id}) }}">{{ vehicle.owner.fullName }}</a>
                     </td>
                 </tr>
                 <tr>

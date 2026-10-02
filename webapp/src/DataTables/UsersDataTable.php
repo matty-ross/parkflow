@@ -8,7 +8,6 @@ use Pentiminax\UX\DataTables\Column\DateColumn;
 use Pentiminax\UX\DataTables\Column\TemplateColumn;
 use Pentiminax\UX\DataTables\Column\TextColumn;
 use Pentiminax\UX\DataTables\Filter\DateRangeFilter;
-use Pentiminax\UX\DataTables\Filter\TernaryFilter;
 use Pentiminax\UX\DataTables\Filter\TextFilter;
 use Pentiminax\UX\DataTables\Model\AbstractDataTable;
 use Pentiminax\UX\DataTables\Model\Action;
@@ -32,9 +31,7 @@ final class UsersDataTable extends AbstractDataTable
 
         yield TextColumn::new('email', 'label.email');
 
-        yield TextColumn::new('firstName', 'label.first_name');
-
-        yield TextColumn::new('lastName', 'label.last_name');
+        yield TextColumn::new('fullName', 'label.full_name');
 
         yield TemplateColumn::new('roles', 'label.roles')
             ->setTemplate('users/_role_badges.html.twig')
@@ -79,17 +76,8 @@ final class UsersDataTable extends AbstractDataTable
                     ->label('label.email')
             )
             ->add(
-                TextFilter::new('firstName')
-                    ->label('label.first_name')
-            )
-            ->add(
-                TextFilter::new('lastName')
-                    ->label('label.last_name')
-            )
-            ->add(
-                TernaryFilter::new('isActive')
-                    ->label('label.is_active')
-                    ->values(trueValue: true, falseValue: false)
+                TextFilter::new('fullName')
+                    ->label('label.full_name')
             )
         ;
     }

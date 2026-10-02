@@ -22,7 +22,7 @@
                     <th>{{ 'label.recognized_user'|trans }}</th>
                     <td>
                         {% if event.recognizedUser %}
-                            <a href="{{ path('app_users_show', {'id': event.recognizedUser.id}) }}">{{ event.recognizedUser }}</a>
+                            <a href="{{ path('app_users_show', {'id': event.recognizedUser.id}) }}">{{ event.recognizedUser.fullName }}</a>
                         {% endif %}
                     </td>
                 </tr>

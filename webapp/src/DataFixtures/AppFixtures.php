@@ -33,8 +33,7 @@ class AppFixtures extends Fixture
 
             $user = new User()
                 ->setEmail($faker->unique()->email())
-                ->setFirstName($faker->firstName($gender))
-                ->setLastName($faker->lastName($gender))
+                ->setFullName($faker->firstName($gender).' '.$faker->lastName($gender))
                 ->setRoles([User::ROLE_USER])
                 ->setIsActive($faker->boolean(80))
             ;

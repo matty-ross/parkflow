@@ -15,7 +15,8 @@ class UserAutocompleteField extends AbstractType
     {
         $resolver->setDefaults([
             'class' => User::class,
-            'searchable_fields' => ['firstName', 'lastName'],
+            'searchable_fields' => ['fullName'],
+            'choice_label' => 'fullName',
             'security' => User::ROLE_ADMIN,
         ]);
     }
