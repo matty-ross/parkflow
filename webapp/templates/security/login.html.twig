@@ -2,35 +2,41 @@
 
 {% block title %}{{ parent() ~ ' | ' ~ 'title.login'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% endblock %}
+
 {% block navbar %}{% endblock %}
 
 {% block main %}
-    {% include '_locale_switcher.html.twig' %}
+    <div class="text-end mt-3">
+        {% include '_locale_switcher.html.twig' %}
+    </div>
 
-    <h1>ParkFlow</h1>
+    <div class="login-form mx-auto">
+        <h1 class="text-center mb-5">ParkFlow</h1>
 
-    <form method="post">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger alert-dismissible mb-3">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
         {% endif %}
 
-        <label for="username" class="form-label">{{ 'label.email'|trans }}</label>
-        <input id="username" type="email" value="{{ last_username }}" name="_username" class="form-control" required autofocus>
-
-        <label for="password" class="form-label">{{ 'label.password'|trans }}</label>
-        <input id="password" type="password" name="_password" class="form-control" required>
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
+        <form method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">{{ 'label.email'|trans }}</label>
+                <input id="username" type="email" value="{{ last_username }}" name="_username" class="form-control" required autofocus>
             </div>
-        #}
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" {{ stimulus_controller('csrf-protection') }}>
-        <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i>{{ 'action.login'|trans }}</button>
-    </form>
+            <div class="mb-3">
+                <label for="password" class="form-label">{{ 'label.password'|trans }}</label>
+                <input id="password" type="password" name="_password" class="form-control" required>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" {{ stimulus_controller('csrf-protection') }}>
+
+            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right"></i>{{ 'action.login'|trans }}</button>
+        </form>
+    </div>
 {% endblock %}

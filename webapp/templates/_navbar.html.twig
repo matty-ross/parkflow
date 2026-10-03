@@ -1,42 +1,51 @@
 {% macro nav_item(url, base_route_prefix, icon, title) %}
-    <li class="nav-item">
+    <li class="nav-item mx-1">
         <a href="{{ url }}" class="nav-link {% if app.current_route starts with base_route_prefix %}active{% endif %}"><i class="bi {{ icon }}"></i>{{ title }}</a>
     </li>
 {% endmacro %}
 
-<div class="bg-body-tertiary">
-    <nav class="navbar navbar-expand container">
-        <a href="{{ path('app_home_index') }}" class="navbar-brand">ParkFlow</a>
-
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+<div class="border-bottom">
+    <nav class="navbar navbar-expand-md container p-3">
+        <button type="button" class="navbar-toggler me-3" data-bs-toggle="offcanvas" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div id="navbar-content" class="navbar-collapse collapse">
-            <ul class="navbar-nav">
-                {{ _self.nav_item(path('app_users_index'), 'app_users', 'bi-person', 'title.users'|trans) }}
-                {{ _self.nav_item(path('app_vehicles_index'), 'app_vehicles', 'bi-car-front', 'title.vehicles'|trans) }}
-                {{ _self.nav_item(path('app_events_index'), 'app_events', 'bi-arrow-down-up', 'title.events'|trans) }}
-            </ul>
+        <a href="{{ path('app_home_index') }}" class="navbar-brand">ParkFlow</a>
+
+        <div id="navbar-content" class="offcanvas offcanvas-start">
+            <div class="offcanvas-header border-bottom py-4">
+                <div class="offcanvas-title fs-5">ParkFlow</div>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    {{ _self.nav_item(path('app_users_index'), 'app_users', 'bi-person', 'title.users'|trans) }}
+                    {{ _self.nav_item(path('app_vehicles_index'), 'app_vehicles', 'bi-car-front', 'title.vehicles'|trans) }}
+                    {{ _self.nav_item(path('app_events_index'), 'app_events', 'bi-arrow-down-up', 'title.events'|trans) }}
+                </ul>
+            </div>
         </div>
 
-        <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                <i class="bi bi-person-circle"></i>
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <div class="dropdown-item-text">
-                        <span class="text-body-secondary">{{ app.user.fullName }}</span>
-                        {{ app.user.email }}
-                    </div>
-                </li>
-                <li>
-                    <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-left"></i>{{ 'action.logout'|trans }}</a>
-                </li>
-            </ul>
-        </div>
+        <div class="d-flex gap-2 ms-auto">
+            {% include '_locale_switcher.html.twig' %}
 
-        {% include '_locale_switcher.html.twig' %}
+            <div class="dropdown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                    <i class="bi bi-person-circle"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <div class="dropdown-item-text">
+                            <div>{{ app.user.email }}</div>
+                            <div class="text-body-secondary">{{ app.user.fullName }}</div>
+                        </div>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a href="{{ logout_path() }}" class="dropdown-item text-danger" data-turbo="false"><i class="bi bi-box-arrow-left"></i>{{ 'action.logout'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 </div>

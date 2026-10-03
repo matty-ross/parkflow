@@ -1,9 +1,11 @@
-<div class="toast-container position-fixed bottom-0 end-0 m-5" {{ stimulus_controller('toasts') }}>
+<div class="toast-container position-fixed bottom-0 end-0 m-3" {{ stimulus_controller('toasts') }}>
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="toast d-flex justify-content-between align-items-center text-bg-success" {{ stimulus_target('toasts', 'toast') }}>
-                <div class="toast-body">{{ message|trans }}</div>
-                <button type="button" class="btn-close me-2" data-bs-dismiss="toast"></button>
+            <div class="toast align-items-center text-bg-success" {{ stimulus_target('toasts', 'toast') }}>
+                <div class="d-flex">
+                    <div class="toast-body">{{ message|trans }}</div>
+                    <button type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast"></button>
+                </div>
             </div>
         {% endfor %}
     {% endfor %}
