@@ -1,7 +1,7 @@
 {% extends 'users/index.html.twig' %}
 
 {% block main %}
-    <h1>{{ 'title.user'|trans }}</h1>
+    <h1 class="my-3">{{ 'title.user'|trans }}</h1>
 
     <div class="table-responsive">
         <table class="table">
@@ -30,10 +30,10 @@
         </table>
     </div>
 
-    <a href="{{ path('app_users_edit', {'id': user.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
+    <a href="{{ path('app_users_edit', {'id': user.id}) }}" class="btn btn-primary w-100 mb-3"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
 
     <form method="post" action="{{ path('app_users_delete', {'id': user.id}) }}" class="d-inline">
         <input type="hidden" name="_token" value="{{ csrf_token('app_users_delete' ~ user.id) }}">
-        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i>{{ 'action.delete'|trans }}</button>
+        <button type="submit" class="btn btn-danger w-100 mb-3"><i class="bi bi-trash"></i>{{ 'action.delete'|trans }}</button>
     </form>
 {% endblock %}

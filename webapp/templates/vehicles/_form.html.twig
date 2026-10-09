@@ -1,5 +1,17 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            {{ form_row(form.owner) }}
+        </div>
+        <div class="col-12 col-md-6">
+            {{ form_row(form.licensePlate) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.description) }}
+        </div>
+    </div>
 
-    <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i>{{ 'action.submit'|trans }}</button>
+    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-check"></i>{{ 'action.submit'|trans }}</button>
 {{ form_end(form) }}
