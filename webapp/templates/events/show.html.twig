@@ -26,6 +26,14 @@
                         {% endif %}
                     </td>
                 </tr>
+                <tr>
+                    <th>{{ 'label.snapshot'|trans }}</th>
+                    <td>
+                        {% if event.snapshotUuid %}
+                            <img src="{{ path('app_events_snapshot', {'id': event.id}) }}" alt="snapshot" height="300">
+                        {% endif %}
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

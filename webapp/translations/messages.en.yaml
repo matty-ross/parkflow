@@ -21,6 +21,7 @@ label.recognized_user: 'Recognized user'
 label.role_user: User
 label.role_admin: Admin
 label.roles: Roles
+label.snapshot: Snapshot
 result.event_edited: 'Event edited'
 result.no_results: 'No results'
 result.user_created: 'User created'

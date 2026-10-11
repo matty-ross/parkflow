@@ -21,6 +21,7 @@ label.recognized_user: 'Rozpoznaný používateľ'
 label.role_user: Používateľ
 label.role_admin: Admin
 label.roles: Role
+label.snapshot: Snapshot
 result.event_edited: 'Udalosť upravená'
 result.no_results: 'Žiadne výsledky'
 result.user_created: 'Používateľ vytvorený'
