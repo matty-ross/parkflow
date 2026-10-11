@@ -6,6 +6,8 @@ services:
       - 443:443
     environment:
       XDEBUG_MODE: off
+    volumes:
+      - app_uploads:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy
@@ -29,6 +31,7 @@ services:
 ###< doctrine/doctrine-bundle ###
 
 volumes:
+  app_uploads:
 ###> doctrine/doctrine-bundle ###
   postgres_data:
 ###< doctrine/doctrine-bundle ###

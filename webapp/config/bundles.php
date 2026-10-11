@@ -16,4 +16,5 @@ return [
     Symfony\UX\Autocomplete\AutocompleteBundle::class => ['all' => true],
     Pentiminax\UX\DataTables\PentiminaxDataTablesBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
+    League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
 ];
