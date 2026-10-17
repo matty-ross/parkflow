@@ -2,6 +2,5 @@
 flysystem:
     storages:
         snapshots.storage:
-            adapter: 'local'
-            options:
+            local:
                 directory: '%kernel.project_dir%/uploads/snapshots'

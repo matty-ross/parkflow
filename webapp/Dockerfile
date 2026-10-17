@@ -6,6 +6,7 @@ RUN <<-EOF
 	install-php-extensions \
 		@composer \
 		pdo_pgsql \
+		intl \
 		opcache \
 		xdebug
 EOF

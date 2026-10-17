@@ -13,6 +13,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@PhpCsFixer' => true,
         'yoda_style' => false,
+        'return_assignment' => false,
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__ . '/var/.php-cs-fixer.cache')

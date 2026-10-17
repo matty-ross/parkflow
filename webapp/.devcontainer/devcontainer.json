@@ -18,6 +18,9 @@
                 "zignd.html-css-class-completion"
             ],
             "settings": {
+                "php.suggest.basic": false,
+                "php.validate.enable": false,
+                "intelephense.environment.phpVersion": "8.5",
                 "launch": {
                     "version": "0.2.0",
                     "configurations": [

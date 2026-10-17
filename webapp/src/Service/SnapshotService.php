@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use League\Flysystem\FilesystemOperator;
+use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Uid\Uuid;
 
 class SnapshotService
@@ -13,6 +14,7 @@ class SnapshotService
     private const MAX_ATTEMPTS = 3;
 
     public function __construct(
+        #[Target('snapshots.storage')]
         private FilesystemOperator $snapshotsStorage,
     ) {}
 
