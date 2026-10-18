@@ -24,16 +24,26 @@
                 </tr>
                 <tr>
                     <th>{{ 'label.is_active'|trans }}</th>
-                    <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+                    <td>
+                        {% if user.isActive %}
+                            <i class="bi bi-check text-success"></i>
+                        {% else %}
+                            <i class="bi bi-x text-danger"></i>
+                        {% endif %}
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <a href="{{ path('app_users_edit', {'id': user.id}) }}" class="btn btn-primary w-100 mb-3"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
+    <div class="d-flex justify-content-end gap-2">
+        <a href="{{ path('app_users_edit', {'id': user.id}) }}" class="btn btn-primary"><i class="bi bi-pencil"></i>{{ 'action.edit'|trans }}</a>
 
-    <form method="post" action="{{ path('app_users_delete', {'id': user.id}) }}" class="d-inline">
-        <input type="hidden" name="_token" value="{{ csrf_token('app_users_delete' ~ user.id) }}">
-        <button type="submit" class="btn btn-danger w-100 mb-3"><i class="bi bi-trash"></i>{{ 'action.delete'|trans }}</button>
-    </form>
+        {% if user.events is empty %}
+            <form method="post" action="{{ path('app_users_delete', {'id': user.id}) }}" data-turbo-confirm="{{ 'question.user_delete'|trans }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('app_users_delete' ~ user.id) }}">
+                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i>{{ 'action.delete'|trans }}</button>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}

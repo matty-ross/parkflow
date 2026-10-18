@@ -99,10 +99,12 @@ final class UserController extends AbstractController
     public function delete(Request $request, User $user): Response
     {
         if ($this->isCsrfTokenValid('app_users_delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
-            $this->entityManager->remove($user);
-            $this->entityManager->flush();
+            if ($user->getEvents()->isEmpty()) {
+                $this->entityManager->remove($user);
+                $this->entityManager->flush();
 
-            $this->addFlash('notice', 'result.user_deleted');
+                $this->addFlash('notice', 'result.user_deleted');
+            }
         }
 
         return $this->redirectToRoute('app_users_index', status: Response::HTTP_SEE_OTHER);

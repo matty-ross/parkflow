@@ -1,23 +1,11 @@
 {{ form_start(form) }}
-    <div class="row">
-        <div class="col-12 col-md-6">
-            {{ form_row(form.email) }}
-        </div>
-        <div class="col-12 col-md-6">
-            {{ form_row(form.password) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            {{ form_row(form.fullName) }}
-        </div>
-        <div class="col-6 col-md-3">
-            {{ form_row(form.roles, {'label_attr': {'class': 'py-0'}}) }}
-        </div>
-        <div class="col-6 col-md-3">
-            {{ form_row(form.isActive) }}
-        </div>
-    </div>
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.fullName) }}
+    {{ form_row(form.roles, {'attr': {'class': 'border rounded p-3'}}) }}
+    {{ form_row(form.isActive) }}
 
-    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-check"></i>{{ 'action.submit'|trans }}</button>
+    <div class="d-flex justify-content-end gap-2">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i>{{ 'action.submit'|trans }}</button>
+    </div>
 {{ form_end(form) }}

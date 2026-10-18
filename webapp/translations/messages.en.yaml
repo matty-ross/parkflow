@@ -22,6 +22,8 @@ label.role_user: User
 label.role_admin: Admin
 label.roles: Roles
 label.snapshot: Snapshot
+question.user_delete: 'Delete user?'
+question.vehicle_delete: 'Delete vehicle?'
 result.event_edited: 'Event edited'
 result.no_results: 'No results'
 result.user_created: 'User created'
