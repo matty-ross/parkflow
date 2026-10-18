@@ -1,5 +1,5 @@
 {% macro nav_item(url, base_route_prefix, icon, title) %}
-    <li class="nav-item mx-1">
+    <li class="nav-item mx-md-2">
         <a href="{{ url }}" class="nav-link {% if app.current_route starts with base_route_prefix %}active{% endif %}"><i class="bi {{ icon }}"></i>{{ title }}</a>
     </li>
 {% endmacro %}

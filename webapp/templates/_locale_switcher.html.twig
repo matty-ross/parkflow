@@ -5,7 +5,7 @@
     <ul class="dropdown-menu dropdown-menu-end">
         {% for locale in app.enabled_locales %}
             <li>
-                <a href="{{ path(app.current_route, app.current_route_parameters|merge({'_locale': locale})) }}" class="dropdown-item">{{ locale|locale_name(locale)|u.title }}</a>
+                <a href="{{ path(app.current_route, app.current_route_parameters|merge({'_locale': locale})) }}" class="dropdown-item {% if app.locale == locale %}active{% endif %}">{{ locale|locale_name(locale)|u.title }}</a>
             </li>
         {% endfor %}
     </ul>

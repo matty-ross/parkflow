@@ -3,16 +3,14 @@
 {% block title %}{{ parent() ~ ' | ' ~ 'title.login'|trans }}{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
+
     <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
 {% endblock %}
 
 {% block navbar %}{% endblock %}
 
 {% block main %}
-    <div class="text-end mt-3">
-        {% include '_locale_switcher.html.twig' %}
-    </div>
-
     <div class="login-form mx-auto">
         <h1 class="text-center mb-5">ParkFlow</h1>
 
@@ -36,7 +34,11 @@
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" {{ stimulus_controller('csrf-protection') }}>
 
-            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right"></i>{{ 'action.login'|trans }}</button>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-fill"><i class="bi bi-box-arrow-in-right"></i>{{ 'action.login'|trans }}</button>
+
+                {% include '_locale_switcher.html.twig' %}
+            </div>
         </form>
     </div>
 {% endblock %}

@@ -5,5 +5,5 @@ i.bi {
 label.required::after,
 legend.required::after {
     content: ' *';
-    color: var(--bs-danger);
+    color: var(--bs-red);
 }
