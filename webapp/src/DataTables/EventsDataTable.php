@@ -36,7 +36,7 @@ final class EventsDataTable extends AbstractDataTable
         ;
 
         yield TemplateColumn::new('action', 'label.action')
-            ->setTemplate('events/_action_badge.html.twig')
+            ->setTemplate('_badges.html.twig')
         ;
 
         yield TextColumn::new('licensePlate', 'label.license_plate');

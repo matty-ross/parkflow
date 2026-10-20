@@ -1,0 +1,7 @@
+{% if data is not iterable %}
+    {% set data = [data] %}
+{% endif %}
+
+{% for badge in data %}
+    <span class="badge text-bg-secondary">{{ ('label.' ~ badge|lower)|trans }}</span>
+{% endfor %}

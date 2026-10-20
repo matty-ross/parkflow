@@ -35,11 +35,11 @@ final class UsersDataTable extends AbstractDataTable
         yield TextColumn::new('fullName', 'label.full_name');
 
         yield TemplateColumn::new('roles', 'label.roles')
-            ->setTemplate('users/_role_badges.html.twig')
+            ->setTemplate('_badges.html.twig')
         ;
 
         yield TemplateColumn::new('isActive', 'label.is_active')
-            ->setTemplate('users/_is_active_icon.html.twig')
+            ->setTemplate('_bool_icon.html.twig')
         ;
     }
 

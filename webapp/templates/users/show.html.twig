@@ -20,16 +20,12 @@
                 </tr>
                 <tr>
                     <th>{{ 'label.roles'|trans }}</th>
-                    <td>{% include 'users/_role_badges.html.twig' with {'data': user.roles ?? []} %}</td>
+                    <td>{% include '_badges.html.twig' with {'data': user.roles ?? []} %}</td>
                 </tr>
                 <tr>
                     <th>{{ 'label.is_active'|trans }}</th>
                     <td>
-                        {% if user.isActive %}
-                            <i class="bi bi-check text-success"></i>
-                        {% else %}
-                            <i class="bi bi-x text-danger"></i>
-                        {% endif %}
+                        {% include '_bool_icon.html.twig' with {'data': user.isActive} %}
                     </td>
                 </tr>
             </tbody>
