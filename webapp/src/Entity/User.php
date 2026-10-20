@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Choice(choices: [self::ROLE_USER, self::ROLE_ADMIN], multiple: true)]
     private array $roles = [];
 
-    #[ORM\Column(type: Types::BOOLEAN)]
+    #[ORM\Column(type: Types::BOOLEAN, index: true)]
     private bool $isActive = true;
 
     /**

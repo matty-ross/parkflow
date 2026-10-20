@@ -20,6 +20,7 @@ final class Version20260915174318 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_1483A5E98B8E8428 ON users (created_at)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON users (email)');
         $this->addSql('CREATE INDEX IDX_1483A5E9DBC463C4 ON users (full_name)');
+        $this->addSql('CREATE INDEX IDX_1483A5E91B5771DD ON users (is_active)');
     }
 
     public function down(Schema $schema): void

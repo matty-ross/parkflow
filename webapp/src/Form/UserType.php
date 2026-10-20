@@ -45,6 +45,7 @@ class UserType extends AbstractType
             ->add('isActive', CheckboxType::class, [
                 'label' => 'label.is_active',
                 'required' => false,
+                'disabled' => $options['current_user'] === $options['data'],
             ])
         ;
     }
@@ -56,5 +57,6 @@ class UserType extends AbstractType
         ]);
 
         $resolver->setRequired('edit')->setAllowedTypes('edit', ['bool']);
+        $resolver->setRequired('current_user')->setAllowedTypes('current_user', [User::class, 'null']);
     }
 }
