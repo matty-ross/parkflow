@@ -10,13 +10,13 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AppFixtures extends Fixture
+final class AppFixtures extends Fixture
 {
-    private const MAX_USERS = 100;
-    private const MAX_VEHICLES_PER_USER = 3;
-    private const MAX_EVENTS_PER_USER = 10;
+    public const int MAX_USERS = 100;
+    public const int MAX_VEHICLES_PER_USER = 3;
+    public const int MAX_EVENTS_PER_USER = 10;
 
-    private const LICENSE_PLATE_REGEX = '[A-Z]{2}-[0-9]{3}-[A-Z]{2}';
+    public const string LICENSE_PLATE_REGEX = '[A-Z]{2}-[0-9]{3}-[A-Z]{2}';
 
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,

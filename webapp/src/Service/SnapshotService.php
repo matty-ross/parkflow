@@ -6,12 +6,12 @@ use League\Flysystem\FilesystemOperator;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\Uid\Uuid;
 
-class SnapshotService
+final class SnapshotService
 {
-    public const FILE_EXTENSION = '.jpg';
-    public const MIME_TYPE = 'image/jpeg';
+    final public const string FILE_EXTENSION = '.jpg';
+    final public const string MIME_TYPE = 'image/jpeg';
 
-    private const MAX_ATTEMPTS = 3;
+    public const int MAX_ATTEMPTS = 3;
 
     public function __construct(
         #[Target('snapshots.storage')]

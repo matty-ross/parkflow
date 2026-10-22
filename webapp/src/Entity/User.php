@@ -16,10 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table('users')]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(fields: ['email'])]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    final public const ROLE_USER = 'ROLE_USER';
-    final public const ROLE_ADMIN = 'ROLE_ADMIN';
+    final public const string ROLE_USER = 'ROLE_USER';
+    final public const string ROLE_ADMIN = 'ROLE_ADMIN';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

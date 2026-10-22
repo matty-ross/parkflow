@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table('vehicles')]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(fields: ['licensePlate'])]
-class Vehicle
+final class Vehicle
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

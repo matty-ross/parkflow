@@ -7,7 +7,7 @@ use App\Service\SnapshotService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class EventDto
+final class EventDto
 {
     #[Assert\NotBlank]
     #[Assert\Choice(choices: [Event::ACTION_ENTRY, Event::ACTION_EXIT])]

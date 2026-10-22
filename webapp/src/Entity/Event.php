@@ -10,10 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[ORM\Table('events')]
 #[ORM\HasLifecycleCallbacks]
-class Event
+final class Event
 {
-    final public const ACTION_ENTRY = 'ACTION_ENTRY';
-    final public const ACTION_EXIT = 'ACTION_EXIT';
+    final public const string ACTION_ENTRY = 'ACTION_ENTRY';
+    final public const string ACTION_EXIT = 'ACTION_EXIT';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

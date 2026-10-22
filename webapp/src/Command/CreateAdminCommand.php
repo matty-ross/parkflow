@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
     name: 'app:create-admin',
     description: 'Create an admin user account.',
 )]
-class CreateAdminCommand extends Command
+final class CreateAdminCommand extends Command
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
