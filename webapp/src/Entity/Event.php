@@ -30,6 +30,7 @@ class Event
 
     #[ORM\Column(type: Types::STRING, length: 20, index: true)]
     #[Assert\NotBlank]
+    #[Assert\Length(max: 20)]
     private ?string $licensePlate = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]

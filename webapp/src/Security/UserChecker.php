@@ -10,9 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserChecker implements UserCheckerInterface
 {
-    public function checkPreAuth(UserInterface $user): void
-    {
-    }
+    public function checkPreAuth(UserInterface $user): void {}
 
     public function checkPostAuth(UserInterface $user, ?TokenInterface $token = null): void
     {
