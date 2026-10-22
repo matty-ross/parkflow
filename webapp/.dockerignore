@@ -1,6 +1,8 @@
-assets/vendor/
-public/assets/
-public/bundles/
-uploads/
-var/
-vendor/
+/public/bundles/
+/var/
+/vendor/
+
+/public/assets/
+/assets/vendor/
+
+/uploads/

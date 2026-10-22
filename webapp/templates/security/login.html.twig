@@ -2,12 +2,6 @@
 
 {% block title %}{{ parent() ~ ' | ' ~ 'title.login'|trans }}{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
-{% endblock %}
-
 {% block navbar %}{% endblock %}
 
 {% block main %}

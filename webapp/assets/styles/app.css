@@ -7,3 +7,8 @@ legend.required::after {
     content: ' *';
     color: var(--bs-red);
 }
+
+.login-form {
+    max-width: 30rem;
+    margin-top: 15dvh;
+}
