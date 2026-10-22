@@ -6,7 +6,10 @@
 
 {% block main %}
     <div class="login-form mx-auto">
-        <h1 class="text-center mb-5">ParkFlow</h1>
+        <div class="text-center mb-5">
+            <img src="{{ asset('images/icon.svg') }}" alt="icon" width="150">
+            <h1 class="mt-3">ParkFlow</h1>
+        </div>
 
         {% if error %}
             <div class="alert alert-danger alert-dismissible mb-3">

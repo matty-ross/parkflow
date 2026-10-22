@@ -5,16 +5,23 @@
 {% endmacro %}
 
 <div class="border-bottom">
-    <nav class="navbar navbar-expand-md container p-3">
+    <nav class="navbar navbar-expand-md container px-3">
         <button type="button" class="navbar-toggler me-3" data-bs-toggle="offcanvas" data-bs-target="#navbar-content">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a href="{{ path('app_home_index') }}" class="navbar-brand">ParkFlow</a>
+        <a href="{{ path('app_home_index') }}" class="navbar-brand d-none d-md-block">
+            <img src="{{ asset('images/icon.svg') }}" alt="icon" width="50">
+        </a>
 
         <div id="navbar-content" class="offcanvas offcanvas-start">
             <div class="offcanvas-header border-bottom py-4">
-                <div class="offcanvas-title fs-5">ParkFlow</div>
+                <div class="offcanvas-title fs-5">
+                    <a href="{{ path('app_home_index') }}" class="text-decoration-none text-reset d-flex align-items-center gap-3">
+                        <img src="{{ asset('images/icon.svg') }}" alt="icon" width="50">
+                        ParkFlow
+                    </a>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body">
