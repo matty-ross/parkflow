@@ -18,8 +18,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'])]
 final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    final public const string ROLE_USER = 'ROLE_USER';
-    final public const string ROLE_ADMIN = 'ROLE_ADMIN';
+    public const string ROLE_USER = 'ROLE_USER';
+    public const string ROLE_ADMIN = 'ROLE_ADMIN';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

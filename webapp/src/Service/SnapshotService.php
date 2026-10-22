@@ -8,10 +8,10 @@ use Symfony\Component\Uid\Uuid;
 
 final class SnapshotService
 {
-    final public const string FILE_EXTENSION = '.jpg';
-    final public const string MIME_TYPE = 'image/jpeg';
+    public const string FILE_EXTENSION = '.jpg';
+    public const string MIME_TYPE = 'image/jpeg';
 
-    public const int MAX_ATTEMPTS = 3;
+    private const int MAX_ATTEMPTS = 3;
 
     public function __construct(
         #[Target('snapshots.storage')]

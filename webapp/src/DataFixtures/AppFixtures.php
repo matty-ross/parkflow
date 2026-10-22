@@ -12,11 +12,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class AppFixtures extends Fixture
 {
-    public const int MAX_USERS = 100;
-    public const int MAX_VEHICLES_PER_USER = 3;
-    public const int MAX_EVENTS_PER_USER = 10;
+    private const int MAX_USERS = 100;
+    private const int MAX_VEHICLES_PER_USER = 3;
+    private const int MAX_EVENTS_PER_USER = 10;
 
-    public const string LICENSE_PLATE_REGEX = '[A-Z]{2}-[0-9]{3}-[A-Z]{2}';
+    private const string LICENSE_PLATE_REGEX = '[A-Z]{2}-[0-9]{3}-[A-Z]{2}';
 
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,

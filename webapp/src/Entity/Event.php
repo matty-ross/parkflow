@@ -12,8 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\HasLifecycleCallbacks]
 final class Event
 {
-    final public const string ACTION_ENTRY = 'ACTION_ENTRY';
-    final public const string ACTION_EXIT = 'ACTION_EXIT';
+    public const string ACTION_ENTRY = 'ACTION_ENTRY';
+    public const string ACTION_EXIT = 'ACTION_EXIT';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
